@@ -1,100 +1,244 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import ArrowSvg from '../icons/ArrowSvg';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
 export default function ChannelsSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const channelsRef = useRef<HTMLDivElement>(null);
+  const agTopRef = useRef<HTMLDivElement>(null);
+  const agRightRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    const channelsWrapper = channelsRef.current;
+    const agTop = agTopRef.current;
+    const agRight = agRightRef.current;
+    if (!section || !channelsWrapper) return;
+
+    const ctx = gsap.context(() => {
+      // Content Entrance Timeline
+      const contentTL = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 85%',
+        },
+      });
+
+      const label = section.querySelector('.s-label');
+      const title = section.querySelector('.s-title');
+      const text = section.querySelector('.s-text');
+
+      if (label) {
+        contentTL.fromTo(label, { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 1.2, ease: 'power3.out' }, 0);
+      }
+      if (title) {
+        contentTL.fromTo(title, { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 1.4, ease: 'power4.out' }, 0.1);
+      }
+      if (text) {
+        contentTL.fromTo(text, { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 1.4, ease: 'power3.out' }, 0.3);
+      }
+
+      // Channel Blocks Scale Animation
+      const blocks = section.querySelectorAll<HTMLElement>('.channel');
+      blocks.forEach((block) => {
+        gsap.fromTo(
+          block,
+          { scale: 0.9, autoAlpha: 0 },
+          {
+            scale: 1,
+            autoAlpha: 1,
+            ease: 'power4.out',
+            duration: 0.8,
+            scrollTrigger: {
+              trigger: block,
+              start: 'top 90%',
+            },
+          }
+        );
+      });
+
+      // ArrowGrid Entrance Animation
+      const arrowGridTL = gsap.timeline({
+        paused: true,
+        scrollTrigger: {
+          trigger: channelsWrapper,
+          start: 'top 85%',
+          onEnter: () => arrowGridTL.play(),
+        },
+      });
+
+      if (agTop) {
+        const topItems = Array.from(agTop.children) as HTMLElement[];
+        arrowGridTL.fromTo(agTop, { xPercent: 100 }, { xPercent: 0, ease: 'power4.out', duration: 1.8 }, 0);
+        topItems.forEach((item, index) => {
+          if (index !== 0) {
+            arrowGridTL.fromTo(
+              item,
+              { x: `${14 * index}rem` },
+              { x: 0, ease: 'power4.out', duration: 1.3 + index * 0.1 },
+              0
+            );
+          }
+        });
+      }
+
+      if (agRight) {
+        const rightItems = Array.from(agRight.children) as HTMLElement[];
+        arrowGridTL.fromTo(agRight, { yPercent: 100 }, { yPercent: 0, ease: 'power4.out', duration: 1.6 }, 0.2);
+        rightItems.forEach((item, index) => {
+          if (index !== 0) {
+            arrowGridTL.fromTo(
+              item,
+              { y: `${14 * index}rem` },
+              { y: 0, ease: 'power4.out', duration: 1 + index * 0.1 },
+              0.4
+            );
+          }
+        });
+      }
+    }, section);
+
+    return () => {
+      ctx.revert();
+    };
+  }, []);
+
   return (
-    <section className="section section-channels">
+    <section ref={sectionRef} className="section section-channels py-[8rem] lg:py-[12rem] bg-black text-white overflow-hidden">
       <div className="container">
         <div className="s-inner">
-          <div className="s-content">
-            <div className="s-title-wrapper">
-              <span className="s-label">
+          
+          {/* Header row */}
+          <div className="s-content flex flex-col lg:flex-row items-start lg:items-end justify-between gap-[2.4rem] lg:gap-[4.8rem] mb-[4rem] lg:mb-[6.4rem]">
+            <div className="s-title-wrapper w-full lg:max-w-[55%]">
+              <span className="label s-label mb-[1.6rem] inline-flex items-center text-[1.2rem] font-mackinac font-normal px-[1.2rem] h-[2.8rem] rounded-full bg-[#BDF500] text-black">
                 Omni-channel Solutions
               </span>
-              <h2 className="s-title">
-                Seamless checkout wherever they shop
+              <h2 className="s-title font-display font-black text-[4.8rem] sm:text-[6.4rem] lg:text-[7.6rem] xl:text-[8.3rem] leading-[0.82] uppercase text-white tracking-tight">
+                Seamless checkout<br />wherever they shop
               </h2>
             </div>
-            <p className="s-text">
+            <p className="s-text font-sans text-[1.5rem] sm:text-[1.6rem] lg:text-[1.8rem] text-white/85 max-w-[54rem] leading-[1.5] font-normal pb-[0.8rem]">
               Offer shoppers the convenience of fast checkouts online and in-store with the PayJustNow app.
             </p>
           </div>
-          <div className="channels arrow-grid">
-            <div className="channels-col channels-left">
-              <div className="channel channel-1">
-                <h3 className="channel-title">
-                  eCommerce
+
+          {/* Grid Layout matching screenshot */}
+          <div ref={channelsRef} className="channels arrow-grid flex flex-col lg:flex-row items-stretch gap-0 w-full">
+            
+            {/* Left Column: ECOMMERCE & POS INTEGRATION */}
+            <div className="channels-col channels-left flex flex-col flex-1 w-full lg:w-1/2">
+              
+              {/* Channel 1: ECOMMERCE */}
+              <div className="channel channel-1 flex flex-col justify-center p-[3.2rem] sm:p-[4.4rem] lg:p-[5.6rem] border border-white rounded-[3.6rem] sm:rounded-[4.8rem] lg:rounded-[6.4rem] bg-black text-white min-h-[26rem] lg:min-h-[32rem]">
+                <h3 className="channel-title font-sans text-[2.6rem] sm:text-[3rem] lg:text-[3.4rem] font-medium uppercase text-white tracking-tight mb-[1.6rem] lg:mb-[2rem] leading-[1.1]">
+                  ECOMMERCE
                 </h3>
-                <p className="channel-text">
+                <p className="channel-text font-sans text-[1.4rem] sm:text-[1.5rem] lg:text-[1.6rem] text-white/90 leading-[1.55] max-w-[46rem] font-normal">
                   Our prebuilt plugins are compatible with Shopify, Magento, WooCommerce, Salesforce Shopstar, PrestaShop and Storefront. Plus, you can tailor our integration to suit your business needs.
                 </p>
               </div>
-              <div className="channel channel-2">
-                <h3 className="channel-title">
-                  POS Integration
+
+              {/* Channel 2: POS INTEGRATION */}
+              <div className="channel channel-2 flex flex-col justify-center p-[3.2rem] sm:p-[4.4rem] lg:p-[5.6rem] border border-white rounded-[3.6rem] sm:rounded-[4.8rem] lg:rounded-[6.4rem] bg-black text-white -mt-[1px] min-h-[26rem] lg:min-h-[32rem]">
+                <h3 className="channel-title font-sans text-[2.6rem] sm:text-[3rem] lg:text-[3.4rem] font-medium uppercase text-white tracking-tight mb-[1.6rem] lg:mb-[2rem] leading-[1.1]">
+                  POS INTEGRATION
                 </h3>
-                <p className="channel-text">
+                <p className="channel-text font-sans text-[1.4rem] sm:text-[1.5rem] lg:text-[1.6rem] text-white/90 leading-[1.55] max-w-[46rem] font-normal">
                   Seamless POS integrators through ACS, Cow Hills, BCX, Posworx or Yoyo. We are constantly expanding our list of POS partners to keep your payment process smooth and convenient.
                 </p>
               </div>
+
             </div>
-            <div className="channels-right">
-              <div className="channels-col channels-right-left">
-                <div className="channels-right-left-top ag-top">
-                  <div className="word word-1">
-                    <span className="word-text">
+
+            {/* Right Area */}
+            <div className="channels-right flex flex-1 w-full lg:w-1/2 lg:-ml-[1px] mt-[2.4rem] lg:mt-0 items-stretch">
+              
+              {/* Right-Left: Top Arrow Row & SOFT TOUCH INTEGRATION */}
+              <div className="channels-col channels-right-left flex flex-col flex-1 min-w-0">
+                
+                {/* Top Row: Promote, Your, Arrow Right, Arrow Down */}
+                <div ref={agTopRef} className="channels-right-left-top ag-top flex items-center w-full">
+                  
+                  {/* Word 1: Promote */}
+                  <div className="word word-1 flex-1 h-[6.4rem] sm:h-[7.6rem] lg:h-[9rem] px-[2rem] sm:px-[3.2rem] lg:px-[4.8rem] rounded-l-[9rem] rounded-r-0 border border-white bg-black text-white flex items-center justify-center font-sans text-[1.8rem] sm:text-[2rem] lg:text-[2.3rem] font-medium">
+                    <span className="word-text whitespace-nowrap text-white">
                       Promote
                     </span>
                   </div>
-                  <div className="word word-2">
-                    <span className="word-text">
+
+                  {/* Word 2: Your */}
+                  <div className="word word-2 flex-1 h-[6.4rem] sm:h-[7.6rem] lg:h-[9rem] px-[2rem] sm:px-[3.2rem] lg:px-[4.8rem] rounded-[9rem] border border-white bg-black text-white flex items-center justify-center font-sans text-[1.8rem] sm:text-[2rem] lg:text-[2.3rem] font-medium -ml-[1px]">
+                    <span className="word-text whitespace-nowrap text-white">
                       Your
                     </span>
                   </div>
-                  <span className="arrow">
-                    <span className="arrow-fill"></span>
-                    <svg className="arrow-svg" width="39" height="39" viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path fillRule="evenodd" clipRule="evenodd" d="M13.3295 0.262359C13.3295 0.47764 13.6051 2.63482 13.7217 3.33187C14.1183 5.70262 14.764 7.74473 15.7179 9.64502C16.7415 11.6842 18.0346 13.3759 19.6726 14.8192C19.684 14.8292 15.2956 14.828 9.92082 14.8167L0.148437 14.796L0.158899 19.1502L0.169403 23.5043L9.9277 23.4886L19.6859 23.4729L19.3807 23.7517C17.55 25.424 16.0418 27.6484 15.0455 30.1457C14.2435 32.1561 13.771 34.1659 13.4539 36.9152C13.3854 37.5086 13.3295 38.0185 13.3295 38.0484C13.3295 38.0933 14.1141 38.1027 17.851 38.1027H22.3725L22.4669 37.1965C22.6831 35.1227 23.051 33.5484 23.6951 31.9395C24.4472 30.0608 25.4386 28.4977 26.7048 27.1946C28.9606 24.8729 31.8656 23.5833 35.4276 23.3223C35.7448 23.2991 36.4631 23.2799 37.0237 23.2799L38.0432 23.2797L38.0432 19.161L38.0432 15.0423L36.7148 15.0183C35.3785 14.9942 34.8459 14.9504 33.8624 14.7838C31.6805 14.4141 29.6116 13.5136 27.9428 12.2074C27.4652 11.8336 26.3659 10.7573 25.9888 10.2942C24.2994 8.22009 23.149 5.57077 22.6632 2.63531C22.6072 2.29712 22.5189 1.61264 22.4669 1.11421L22.3725 0.208008L17.851 0.208008C14.1141 0.208008 13.3295 0.21744 13.3295 0.262359ZM21.0076 1.85161C21.019 1.92458 21.0582 2.20483 21.0947 2.47434C21.6786 6.78356 23.6842 10.6423 26.6131 13.0916C29.1446 15.2087 32.2164 16.3378 35.9528 16.5246L36.5192 16.553L36.5192 19.1609L36.5192 21.7688L36.2411 21.7689C35.9006 21.769 34.9816 21.8342 34.4803 21.8937C29.7445 22.4562 25.9549 24.8507 23.5322 28.8113C22.3101 30.8092 21.4336 33.3352 21.0947 35.8364C21.0582 36.1059 21.019 36.3862 21.0076 36.4591L20.987 36.5919H18.0052H15.0234L15.0409 36.4591C15.2048 35.2145 15.3912 34.2329 15.6552 33.223C17.0579 27.8589 20.1334 24.0767 24.5742 22.2545C24.8843 22.1272 25.0529 22.0359 25.0623 21.9903C25.0759 21.9246 24.8353 21.9219 21.0464 21.9462C18.8296 21.9603 13.5684 21.9767 9.35467 21.9826L1.69342 21.9934L1.69342 19.1554L1.69342 16.3174L11.5995 16.3378C25.5804 16.3666 25.0479 16.3679 25.0479 16.3046C25.0479 16.2748 24.8376 16.1644 24.5742 16.0559C21.5774 14.8215 19.2324 12.7342 17.5275 9.78378C16.992 8.85716 16.3745 7.44717 16.0074 6.31282C15.6338 5.15866 15.2313 3.3692 15.1026 2.29059C15.0771 2.07722 15.0474 1.86133 15.0365 1.81078L15.0167 1.7189L18.0018 1.7189L20.987 1.7189L21.0076 1.85161Z" fill="white"/>
-                    </svg>
-                  </span>
+
+                  {/* Arrow 1: Right */}
+                  <div className="arrow w-[6.4rem] h-[6.4rem] sm:w-[7.6rem] sm:h-[7.6rem] lg:w-[9rem] lg:h-[9rem] rounded-full border border-white bg-black flex-shrink-0 flex items-center justify-center -ml-[1px]">
+                    <ArrowSvg direction="right" className="w-[3rem] h-[3rem] sm:w-[3.4rem] sm:h-[3.4rem] text-white" />
+                  </div>
+
+                  {/* Arrow 2: Down */}
+                  <div className="arrow w-[6.4rem] h-[6.4rem] sm:w-[7.6rem] sm:h-[7.6rem] lg:w-[9rem] lg:h-[9rem] rounded-full border border-white bg-black flex-shrink-0 flex items-center justify-center -ml-[1px]">
+                    <span className="rotate-90 flex items-center justify-center">
+                      <ArrowSvg direction="right" className="w-[3rem] h-[3rem] sm:w-[3.4rem] sm:h-[3.4rem] text-white" />
+                    </span>
+                  </div>
+
                 </div>
-                <div className="channels-right-left-bottom">
-                  <div className="channel channel-3">
-                    <h3 className="channel-title">
-                      Soft Touch Integration
+
+                {/* Bottom Card: SOFT TOUCH INTEGRATION */}
+                <div className="channels-right-left-bottom flex flex-col flex-grow -mt-[1px]">
+                  <div className="channel channel-3 flex flex-col justify-center flex-grow p-[3.2rem] sm:p-[4.4rem] lg:p-[5.6rem] border border-white rounded-[3.6rem] sm:rounded-[4.8rem] lg:rounded-[6.4rem] bg-black text-white min-h-[30rem] lg:min-h-[55rem]">
+                    <h3 className="channel-title font-sans text-[2.6rem] sm:text-[3rem] lg:text-[3.4rem] font-medium uppercase text-white tracking-tight mb-[1.6rem] lg:mb-[2rem] leading-[1.1]">
+                      SOFT TOUCH INTEGRATION
                     </h3>
-                    <p className="channel-text">
+                    <p className="channel-text font-sans text-[1.4rem] sm:text-[1.5rem] lg:text-[1.6rem] text-white/90 leading-[1.55] max-w-[46rem] font-normal">
                       Use our PayUp merchant app or static QR codes to get up and running in minutes. Cashless payments speed up the checkout process, reduce queues, and keep shoppers coming back for your service and convenience.
                     </p>
                   </div>
                 </div>
+
               </div>
-              <div className="channels-col channels-right-right ag-right">
-                <span className="arrow">
-                  <span className="arrow-fill"></span>
-                  <svg className="arrow-svg" width="39" height="39" viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path fillRule="evenodd" clipRule="evenodd" d="M13.3295 0.262359C13.3295 0.47764 13.6051 2.63482 13.7217 3.33187C14.1183 5.70262 14.764 7.74473 15.7179 9.64502C16.7415 11.6842 18.0346 13.3759 19.6726 14.8192C19.684 14.8292 15.2956 14.828 9.92082 14.8167L0.148437 14.796L0.158899 19.1502L0.169403 23.5043L9.9277 23.4886L19.6859 23.4729L19.3807 23.7517C17.55 25.424 16.0418 27.6484 15.0455 30.1457C14.2435 32.1561 13.771 34.1659 13.4539 36.9152C13.3854 37.5086 13.3295 38.0185 13.3295 38.0484C13.3295 38.0933 14.1141 38.1027 17.851 38.1027H22.3725L22.4669 37.1965C22.6831 35.1227 23.051 33.5484 23.6951 31.9395C24.4472 30.0608 25.4386 28.4977 26.7048 27.1946C28.9606 24.8729 31.8656 23.5833 35.4276 23.3223C35.7448 23.2991 36.4631 23.2799 37.0237 23.2799L38.0432 23.2797L38.0432 19.161L38.0432 15.0423L36.7148 15.0183C35.3785 14.9942 34.8459 14.9504 33.8624 14.7838C31.6805 14.4141 29.6116 13.5136 27.9428 12.2074C27.4652 11.8336 26.3659 10.7573 25.9888 10.2942C24.2994 8.22009 23.149 5.57077 22.6632 2.63531C22.6072 2.29712 22.5189 1.61264 22.4669 1.11421L22.3725 0.208008L17.851 0.208008C14.1141 0.208008 13.3295 0.21744 13.3295 0.262359ZM21.0076 1.85161C21.019 1.92458 21.0582 2.20483 21.0947 2.47434C21.6786 6.78356 23.6842 10.6423 26.6131 13.0916C29.1446 15.2087 32.2164 16.3378 35.9528 16.5246L36.5192 16.553L36.5192 19.1609L36.5192 21.7688L36.2411 21.7689C35.9006 21.769 34.9816 21.8342 34.4803 21.8937C29.7445 22.4562 25.9549 24.8507 23.5322 28.8113C22.3101 30.8092 21.4336 33.3352 21.0947 35.8364C21.0582 36.1059 21.019 36.3862 21.0076 36.4591L20.987 36.5919H18.0052H15.0234L15.0409 36.4591C15.2048 35.2145 15.3912 34.2329 15.6552 33.223C17.0579 27.8589 20.1334 24.0767 24.5742 22.2545C24.8843 22.1272 25.0529 22.0359 25.0623 21.9903C25.0759 21.9246 24.8353 21.9219 21.0464 21.9462C18.8296 21.9603 13.5684 21.9767 9.35467 21.9826L1.69342 21.9934L1.69342 19.1554L1.69342 16.3174L11.5995 16.3378C25.5804 16.3666 25.0479 16.3679 25.0479 16.3046C25.0479 16.2748 24.8376 16.1644 24.5742 16.0559C21.5774 14.8215 19.2324 12.7342 17.5275 9.78378C16.992 8.85716 16.3745 7.44717 16.0074 6.31282C15.6338 5.15866 15.2313 3.3692 15.1026 2.29059C15.0771 2.07722 15.0474 1.86133 15.0365 1.81078L15.0167 1.7189L18.0018 1.7189L20.987 1.7189L21.0076 1.85161Z" fill="white"/>
-                  </svg>
-                </span>
-                <span className="arrow">
-                  <span className="arrow-fill"></span>
-                  <svg className="arrow-svg" width="39" height="39" viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path fillRule="evenodd" clipRule="evenodd" d="M13.3295 0.262359C13.3295 0.47764 13.6051 2.63482 13.7217 3.33187C14.1183 5.70262 14.764 7.74473 15.7179 9.64502C16.7415 11.6842 18.0346 13.3759 19.6726 14.8192C19.684 14.8292 15.2956 14.828 9.92082 14.8167L0.148437 14.796L0.158899 19.1502L0.169403 23.5043L9.9277 23.4886L19.6859 23.4729L19.3807 23.7517C17.55 25.424 16.0418 27.6484 15.0455 30.1457C14.2435 32.1561 13.771 34.1659 13.4539 36.9152C13.3854 37.5086 13.3295 38.0185 13.3295 38.0484C13.3295 38.0933 14.1141 38.1027 17.851 38.1027H22.3725L22.4669 37.1965C22.6831 35.1227 23.051 33.5484 23.6951 31.9395C24.4472 30.0608 25.4386 28.4977 26.7048 27.1946C28.9606 24.8729 31.8656 23.5833 35.4276 23.3223C35.7448 23.2991 36.4631 23.2799 37.0237 23.2799L38.0432 23.2797L38.0432 19.161L38.0432 15.0423L36.7148 15.0183C35.3785 14.9942 34.8459 14.9504 33.8624 14.7838C31.6805 14.4141 29.6116 13.5136 27.9428 12.2074C27.4652 11.8336 26.3659 10.7573 25.9888 10.2942C24.2994 8.22009 23.149 5.57077 22.6632 2.63531C22.6072 2.29712 22.5189 1.61264 22.4669 1.11421L22.3725 0.208008L17.851 0.208008C14.1141 0.208008 13.3295 0.21744 13.3295 0.262359ZM21.0076 1.85161C21.019 1.92458 21.0582 2.20483 21.0947 2.47434C21.6786 6.78356 23.6842 10.6423 26.6131 13.0916C29.1446 15.2087 32.2164 16.3378 35.9528 16.5246L36.5192 16.553L36.5192 19.1609L36.5192 21.7688L36.2411 21.7689C35.9006 21.769 34.9816 21.8342 34.4803 21.8937C29.7445 22.4562 25.9549 24.8507 23.5322 28.8113C22.3101 30.8092 21.4336 33.3352 21.0947 35.8364C21.0582 36.1059 21.019 36.3862 21.0076 36.4591L20.987 36.5919H18.0052H15.0234L15.0409 36.4591C15.2048 35.2145 15.3912 34.2329 15.6552 33.223C17.0579 27.8589 20.1334 24.0767 24.5742 22.2545C24.8843 22.1272 25.0529 22.0359 25.0623 21.9903C25.0759 21.9246 24.8353 21.9219 21.0464 21.9462C18.8296 21.9603 13.5684 21.9767 9.35467 21.9826L1.69342 21.9934L1.69342 19.1554L1.69342 16.3174L11.5995 16.3378C25.5804 16.3666 25.0479 16.3679 25.0479 16.3046C25.0479 16.2748 24.8376 16.1644 24.5742 16.0559C21.5774 14.8215 19.2324 12.7342 17.5275 9.78378C16.992 8.85716 16.3745 7.44717 16.0074 6.31282C15.6338 5.15866 15.2313 3.3692 15.1026 2.29059C15.0771 2.07722 15.0474 1.86133 15.0365 1.81078L15.0167 1.7189L18.0018 1.7189L20.987 1.7189L21.0076 1.85161Z" fill="white"/>
-                  </svg>
-                </span>
-                <span className="arrow">
-                  <span className="arrow-fill"></span>
-                  <svg className="arrow-svg" width="39" height="39" viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path fillRule="evenodd" clipRule="evenodd" d="M13.3295 0.262359C13.3295 0.47764 13.6051 2.63482 13.7217 3.33187C14.1183 5.70262 14.764 7.74473 15.7179 9.64502C16.7415 11.6842 18.0346 13.3759 19.6726 14.8192C19.684 14.8292 15.2956 14.828 9.92082 14.8167L0.148437 14.796L0.158899 19.1502L0.169403 23.5043L9.9277 23.4886L19.6859 23.4729L19.3807 23.7517C17.55 25.424 16.0418 27.6484 15.0455 30.1457C14.2435 32.1561 13.771 34.1659 13.4539 36.9152C13.3854 37.5086 13.3295 38.0185 13.3295 38.0484C13.3295 38.0933 14.1141 38.1027 17.851 38.1027H22.3725L22.4669 37.1965C22.6831 35.1227 23.051 33.5484 23.6951 31.9395C24.4472 30.0608 25.4386 28.4977 26.7048 27.1946C28.9606 24.8729 31.8656 23.5833 35.4276 23.3223C35.7448 23.2991 36.4631 23.2799 37.0237 23.2799L38.0432 23.2797L38.0432 19.161L38.0432 15.0423L36.7148 15.0183C35.3785 14.9942 34.8459 14.9504 33.8624 14.7838C31.6805 14.4141 29.6116 13.5136 27.9428 12.2074C27.4652 11.8336 26.3659 10.7573 25.9888 10.2942C24.2994 8.22009 23.149 5.57077 22.6632 2.63531C22.6072 2.29712 22.5189 1.61264 22.4669 1.11421L22.3725 0.208008L17.851 0.208008C14.1141 0.208008 13.3295 0.21744 13.3295 0.262359ZM21.0076 1.85161C21.019 1.92458 21.0582 2.20483 21.0947 2.47434C21.6786 6.78356 23.6842 10.6423 26.6131 13.0916C29.1446 15.2087 32.2164 16.3378 35.9528 16.5246L36.5192 16.553L36.5192 19.1609L36.5192 21.7688L36.2411 21.7689C35.9006 21.769 34.9816 21.8342 34.4803 21.8937C29.7445 22.4562 25.9549 24.8507 23.5322 28.8113C22.3101 30.8092 21.4336 33.3352 21.0947 35.8364C21.0582 36.1059 21.019 36.3862 21.0076 36.4591L20.987 36.5919H18.0052H15.0234L15.0409 36.4591C15.2048 35.2145 15.3912 34.2329 15.6552 33.223C17.0579 27.8589 20.1334 24.0767 24.5742 22.2545C24.8843 22.1272 25.0529 22.0359 25.0623 21.9903C25.0759 21.9246 24.8353 21.9219 21.0464 21.9462C18.8296 21.9603 13.5684 21.9767 9.35467 21.9826L1.69342 21.9934L1.69342 19.1554L1.69342 16.3174L11.5995 16.3378C25.5804 16.3666 25.0479 16.3679 25.0479 16.3046C25.0479 16.2748 24.8376 16.1644 24.5742 16.0559C21.5774 14.8215 19.2324 12.7342 17.5275 9.78378C16.992 8.85716 16.3745 7.44717 16.0074 6.31282C15.6338 5.15866 15.2313 3.3692 15.1026 2.29059C15.0771 2.07722 15.0474 1.86133 15.0365 1.81078L15.0167 1.7189L18.0018 1.7189L20.987 1.7189L21.0076 1.85161Z" fill="white"/>
-                  </svg>
-                </span>
-                <div className="word word-3">
-                  <span className="word-text">
+
+              {/* Right-Right Column: Two Down Arrows & Brand Vertical Pill */}
+              <div ref={agRightRef} className="channels-col channels-right-right ag-right flex flex-col -ml-[1px] w-[6.4rem] sm:w-[7.6rem] lg:w-[9rem] flex-shrink-0 items-center">
+                
+                {/* Arrow Down 1 */}
+                <div className="arrow w-[6.4rem] h-[6.4rem] sm:w-[7.6rem] sm:h-[7.6rem] lg:w-[9rem] lg:h-[9rem] rounded-full border border-white bg-black flex-shrink-0 flex items-center justify-center">
+                  <span className="rotate-90 flex items-center justify-center">
+                    <ArrowSvg direction="right" className="w-[3rem] h-[3rem] sm:w-[3.4rem] sm:h-[3.4rem] text-white" />
+                  </span>
+                </div>
+
+                {/* Arrow Down 2 */}
+                <div className="arrow w-[6.4rem] h-[6.4rem] sm:w-[7.6rem] sm:h-[7.6rem] lg:w-[9rem] lg:h-[9rem] rounded-full border border-white bg-black flex-shrink-0 flex items-center justify-center -mt-[1px]">
+                  <span className="rotate-90 flex items-center justify-center">
+                    <ArrowSvg direction="right" className="w-[3rem] h-[3rem] sm:w-[3.4rem] sm:h-[3.4rem] text-white" />
+                  </span>
+                </div>
+
+                {/* Word 3: Brand (Vertical Pill) */}
+                <div className="word word-3 w-[6.4rem] sm:w-[7.6rem] lg:w-[9rem] flex-grow rounded-b-[9rem] rounded-t-0 border border-white bg-black text-white flex items-center justify-center font-sans text-[1.8rem] sm:text-[2rem] lg:text-[2.3rem] font-medium -mt-[1px] py-[3.2rem] lg:py-[5.6rem]">
+                  <span className="word-text rotate-90 whitespace-nowrap text-white">
                     Brand
                   </span>
                 </div>
+
               </div>
+
             </div>
+
           </div>
+
         </div>
       </div>
     </section>

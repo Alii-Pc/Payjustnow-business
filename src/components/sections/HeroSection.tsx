@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+
 export default function HeroSection() {
   return (
     <section className="section section-hero">
@@ -13,14 +15,13 @@ export default function HeroSection() {
               Let’s get you paid! Increase your sales with split payment options and performance marketing.
             </p>
             <div className="s-buttons">
-              <a 
-                href="#" 
-                onClick={(e) => e.preventDefault()}
+              <Link 
+                href="/business-application" 
                 className="btn btn-primary btn-md" 
               >
                 <span className="btn-fill"></span>
                 <span className="btn-text">Apply Now</span>
-              </a>
+              </Link>
             </div>
             <div className="hero-statistics">
               <div className="hero-statistic">

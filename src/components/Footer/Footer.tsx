@@ -68,9 +68,9 @@ export default function Footer() {
                   <Link href="/business-support"><span className="text" data-depth="0">Business Support</span></Link>
                 </li>
                 <li id="menu-item-3189" className="menu-item menu-item-type-custom menu-item-object-custom menu-item-depth-0 menu-item-3189">
-                  <a href="#" onClick={(e) => e.preventDefault()}>
+                  <Link href="/business-application">
                     <span className="text" data-depth="0">Request a Demo</span>
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </nav>

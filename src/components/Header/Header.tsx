@@ -47,12 +47,18 @@ export function Header() {
   }, []);
 
   const toggleMobile = () => {
-    setMobileActive(!mobileActive);
-    if (!mobileActive) {
+    const nextState = !mobileActive;
+    setMobileActive(nextState);
+    if (nextState) {
       document.documentElement.classList.add('nav-active');
     } else {
       document.documentElement.classList.remove('nav-active');
     }
+  };
+
+  const closeMobile = () => {
+    setMobileActive(false);
+    document.documentElement.classList.remove('nav-active');
   };
 
   const toggleDropdown = (menuName: string) => {
@@ -64,7 +70,7 @@ export function Header() {
   };
 
   return (
-    <header className={`header ${isScrolled ? 'scrolled' : ''} ${scrollDirection === 'down' && isScrolled ? 'scrolled-down' : ''} ${scrollDirection === 'up' && isScrolled ? 'scrolled-up' : ''}`}>
+    <header className={`header ${isScrolled ? 'scrolled' : ''} ${scrollDirection === 'down' && isScrolled ? 'scrolled-down' : ''} ${scrollDirection === 'up' && isScrolled ? 'scrolled-up' : ''} ${mobileActive ? 'nav-open' : ''}`}>
       <div className="header-top desktop-only">
         <a href="#" onClick={(e) => e.preventDefault()} className="btn btn-outline-dark btn-sm" target="_self">
           <span className="btn-fill"></span>
@@ -117,7 +123,7 @@ export function Header() {
                   <span className="text" data-depth="0">Solutions</span>
                   <span className="toggle"><span className="icon"></span></span>
                 </a>
-                <div className="sub-menu-wrapper" style={{ display: activeMenu === 'solutions' ? 'block' : undefined }}>
+                <div className="sub-menu-wrapper" style={{ display: activeMenu === 'solutions' ? 'block' : 'none' }}>
                   <div className="sub-menu-inner">
                     <div className="sub-menu-bg"></div>
                     <ul className="sub-menu">
@@ -129,25 +135,25 @@ export function Header() {
                           <span className="text" data-depth="1">Payments Solutions</span>
                           <span className="toggle"><span className="icon"></span></span>
                         </a>
-                        <div className="sub-menu-wrapper" style={{ display: activeSubMenu === 'payments' ? 'block' : undefined }}>
+                        <div className="sub-menu-wrapper" style={{ display: activeSubMenu === 'payments' ? 'block' : 'none' }}>
                           <div className="sub-menu-inner">
                             <div className="sub-menu-bg"></div>
                             <ul className="sub-menu">
                               <li id="menu-item-88" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-depth-2 menu-item-88">
-                                <Link href="/bnpl" onClick={() => setMobileActive(false)}><span className="text" data-depth="2">BNPL</span></Link>
+                                <Link href="/bnpl" onClick={closeMobile}><span className="text" data-depth="2">BNPL</span></Link>
                               </li>
                               <li id="menu-item-89" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-depth-2 menu-item-89">
-                                <Link href="/retail-credit" onClick={() => setMobileActive(false)}><span className="text" data-depth="2">Retail Credit</span></Link>
+                                <Link href="/retail-credit" onClick={closeMobile}><span className="text" data-depth="2">Retail Credit</span></Link>
                               </li>
                             </ul>
                           </div>
                         </div>
                       </li>
                       <li id="menu-item-90" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-depth-1 menu-item-90">
-                        <Link href="/marketing-solutions" onClick={() => setMobileActive(false)}><span className="text" data-depth="1">Marketing Solutions</span></Link>
+                        <Link href="/marketing-solutions" onClick={closeMobile}><span className="text" data-depth="1">Marketing Solutions</span></Link>
                       </li>
                       <li id="menu-item-2434" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-depth-1 menu-item-2434">
-                        <Link href="/business-funding" onClick={() => setMobileActive(false)}><span className="text" data-depth="1">Business Funding</span></Link>
+                        <Link href="/business-funding" onClick={closeMobile}><span className="text" data-depth="1">Business Funding</span></Link>
                       </li>
                     </ul>
                   </div>
@@ -165,15 +171,15 @@ export function Header() {
                   <span className="text" data-depth="0">Resources</span>
                   <span className="toggle"><span className="icon"></span></span>
                 </a>
-                <div className="sub-menu-wrapper" style={{ display: activeMenu === 'resources' ? 'block' : undefined }}>
+                <div className="sub-menu-wrapper" style={{ display: activeMenu === 'resources' ? 'block' : 'none' }}>
                   <div className="sub-menu-inner">
                     <div className="sub-menu-bg"></div>
                     <ul className="sub-menu">
                       <li id="menu-item-84" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-depth-1 menu-item-84">
-                        <Link href="/merchant-portal" onClick={() => setMobileActive(false)}><span className="text" data-depth="1">Merchant Portal</span></Link>
+                        <Link href="/merchant-portal" onClick={closeMobile}><span className="text" data-depth="1">Merchant Portal</span></Link>
                       </li>
                       <li id="menu-item-86" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-depth-1 menu-item-86">
-                        <Link href="/payup" onClick={() => setMobileActive(false)}><span className="text" data-depth="1">PayUp</span></Link>
+                        <Link href="/payup" onClick={closeMobile}><span className="text" data-depth="1">PayUp</span></Link>
                       </li>
                     </ul>
                   </div>
@@ -191,18 +197,18 @@ export function Header() {
                   <span className="text" data-depth="0">Help</span>
                   <span className="toggle"><span className="icon"></span></span>
                 </a>
-                <div className="sub-menu-wrapper" style={{ display: activeMenu === 'help' ? 'block' : undefined }}>
+                <div className="sub-menu-wrapper" style={{ display: activeMenu === 'help' ? 'block' : 'none' }}>
                   <div className="sub-menu-inner">
                     <div className="sub-menu-bg"></div>
                     <ul className="sub-menu">
                       <li id="menu-item-91" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-depth-1 menu-item-91">
-                        <Link href="/business-support" onClick={() => setMobileActive(false)}><span className="text" data-depth="1">Business Support</span></Link>
+                        <Link href="/business-support" onClick={closeMobile}><span className="text" data-depth="1">Business Support</span></Link>
                       </li>
                       <li id="menu-item-1374" className="menu-item menu-item-type-custom menu-item-object-custom menu-item-depth-1 menu-item-1374">
                         <a href="#" onClick={(e) => e.preventDefault()}><span className="text" data-depth="1">Operational Status</span></a>
                       </li>
                       <li id="menu-item-3188" className="menu-item menu-item-type-custom menu-item-object-custom menu-item-depth-1 menu-item-3188">
-                        <a href="#" onClick={(e) => e.preventDefault()}><span className="text" data-depth="1">Request a Demo</span></a>
+                        <Link href="/business-application" onClick={closeMobile}><span className="text" data-depth="1">Request a Demo</span></Link>
                       </li>
                     </ul>
                   </div>
@@ -212,14 +218,14 @@ export function Header() {
           </nav>
 
           <div className="header-buttons">
-            <a href="#" onClick={(e) => e.preventDefault()} className="btn btn-outline-dark btn-md">
+            <Link href="/login" onClick={closeMobile} className="btn btn-outline-dark btn-md">
               <span className="btn-fill"></span>
               <span className="btn-text">Log In</span>
-            </a>
-            <a href="#" onClick={(e) => e.preventDefault()} className="btn btn-dark btn-md">
+            </Link>
+            <Link href="/business-application" onClick={closeMobile} className="btn btn-dark btn-md">
               <span className="btn-fill"></span>
               <span className="btn-text">Business Application</span>
-            </a>
+            </Link>
           </div>
 
           <div className="header-social-buttons mobile-only">
