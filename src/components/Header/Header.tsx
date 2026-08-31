@@ -149,12 +149,12 @@ export function Header() {
                           </div>
                         </div>
                       </li>
-                      <li id="menu-item-90" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-depth-1 menu-item-90">
+                      {/* <li id="menu-item-90" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-depth-1 menu-item-90">
                         <Link href="/marketing-solutions" onClick={closeMobile}><span className="text" data-depth="1">Marketing Solutions</span></Link>
                       </li>
                       <li id="menu-item-2434" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-depth-1 menu-item-2434">
                         <Link href="/business-funding" onClick={closeMobile}><span className="text" data-depth="1">Business Funding</span></Link>
-                      </li>
+                      </li> */}
                     </ul>
                   </div>
                 </div>
