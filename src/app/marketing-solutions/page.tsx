@@ -1,31 +1,34 @@
-import Link from 'next/link';
+import PageLoader from '@/components/PageLoader';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
+import MarketingHeroSection from '@/components/sections/marketing/MarketingHeroSection';
+import MarketingStatisticsSection from '@/components/sections/marketing/MarketingStatisticsSection';
+import MarketingPromoteSection from '@/components/sections/marketing/MarketingPromoteSection';
+import MarketingDealsSection from '@/components/sections/marketing/MarketingDealsSection';
+import MarketingStoreDirectorySection from '@/components/sections/marketing/MarketingStoreDirectorySection';
+import MarketingBrandsCarousel from '@/components/sections/marketing/MarketingBrandsCarousel';
+import CTASection from '@/components/sections/CTASection';
 
 export const metadata = {
   title: 'Marketing Solutions - PayJustNow',
-  description: 'Get your business noticed by our community of 2.6 million shoppers and turn interested browsers into new customers.',
+  description: 'Get noticed with PayJustNow. Increase your reach, drive traffic, and boost sales across 2.6 million shoppers.',
 };
 
 export default function MarketingSolutionsPage() {
   return (
-    <main id="home" className="site">
-      <Header />
-      <section className="section section-hero" style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <div className="container" style={{ textAlign: 'center', paddingTop: '8rem', paddingBottom: '8rem' }}>
-          <h1 className="s-title" style={{ marginBottom: '3rem' }}>
-            Marketing Solutions
-          </h1>
-          <p className="s-text" style={{ marginBottom: '4rem', maxWidth: '50rem', marginLeft: 'auto', marginRight: 'auto' }}>
-            Get your business noticed by our community of 2.6 million shoppers and turn interested browsers into new customers.
-          </p>
-          <Link href="/business" className="btn btn-primary btn-md">
-            <span className="btn-fill"></span>
-            <span className="btn-text">Back to Home</span>
-          </Link>
-        </div>
-      </section>
-      <Footer />
-    </main>
+    <>
+      <PageLoader />
+      <main id="marketing" className="site" data-barba="container" data-barba-namespace="marketing">
+        <Header />
+        <MarketingHeroSection />
+        <MarketingStatisticsSection />
+        <MarketingPromoteSection />
+        <MarketingDealsSection />
+        <MarketingStoreDirectorySection />
+        <MarketingBrandsCarousel />
+        <CTASection />
+        <Footer />
+      </main>
+    </>
   );
 }

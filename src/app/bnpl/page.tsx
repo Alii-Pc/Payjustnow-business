@@ -1,31 +1,40 @@
-import Link from 'next/link';
+import PageLoader from '@/components/PageLoader';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
+import BnplHeroSection from '@/components/sections/bnpl/BnplHeroSection';
+import BnplBrandCarousel from '@/components/sections/bnpl/BnplBrandCarousel';
+import BnplMerchantsSection from '@/components/sections/bnpl/BnplMerchantsSection';
+import BnplHowSection from '@/components/sections/bnpl/BnplHowSection';
+import BnplIntegrationSection from '@/components/sections/bnpl/BnplIntegrationSection';
+import BnplIntegrationsCarousel from '@/components/sections/bnpl/BnplIntegrationsCarousel';
+import BnplInStoreSection from '@/components/sections/bnpl/BnplInStoreSection';
+import BnplOnlineSection from '@/components/sections/bnpl/BnplOnlineSection';
+import BnplSolutionsSection from '@/components/sections/bnpl/BnplSolutionsSection';
+import CTASection from '@/components/sections/CTASection';
 
 export const metadata = {
-  title: 'Buy Now Pay Later - PayJustNow',
+  title: 'BNPL - PayJustNow',
   description: 'Split your purchases into 3 interest-free payments. PayJustNow BNPL makes products affordable for every shopper.',
 };
 
 export default function BNPLPage() {
   return (
-    <main id="home" className="site">
-      <Header />
-      <section className="section section-hero" style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <div className="container" style={{ textAlign: 'center', paddingTop: '8rem', paddingBottom: '8rem' }}>
-          <h1 className="s-title" style={{ marginBottom: '3rem' }}>
-            Buy Now Pay Later
-          </h1>
-          <p className="s-text" style={{ marginBottom: '4rem', maxWidth: '50rem', marginLeft: 'auto', marginRight: 'auto' }}>
-            Split your purchases into 3 interest-free payments. PayJustNow BNPL makes products affordable for every shopper.
-          </p>
-          <Link href="/business" className="btn btn-primary btn-md">
-            <span className="btn-fill"></span>
-            <span className="btn-text">Back to Home</span>
-          </Link>
-        </div>
-      </section>
-      <Footer />
-    </main>
+    <>
+      <PageLoader />
+      <main id="bnpl" className="site" data-barba="container" data-barba-namespace="bnpl">
+        <Header />
+        <BnplHeroSection />
+        <BnplBrandCarousel />
+        <BnplMerchantsSection />
+        <BnplHowSection />
+        <BnplIntegrationSection />
+        <BnplIntegrationsCarousel />
+        <BnplInStoreSection />
+        <BnplOnlineSection />
+        <BnplSolutionsSection />
+        <CTASection />
+        <Footer />
+      </main>
+    </>
   );
 }

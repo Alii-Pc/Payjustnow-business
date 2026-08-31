@@ -19,6 +19,8 @@ export default function BusinessFundingPage() {
 
   const goalsRow1Ref = useRef<HTMLDivElement>(null);
   const goalsRow2Ref = useRef<HTMLDivElement>(null);
+  const qualifyRow1Ref = useRef<HTMLDivElement>(null);
+  const qualifyRow2Ref = useRef<HTMLDivElement>(null);
   const howLongRowRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -59,13 +61,15 @@ export default function BusinessFundingPage() {
       }
 
       if (bottomRowRef.current) {
-        const smallCards = bottomRowRef.current.querySelectorAll('.cg-item-content');
+        const cards = bottomRowRef.current.querySelectorAll('.cg-item-content');
         gsap.fromTo(
-          smallCards,
-          { scale: 0.82 },
+          cards,
+          { scale: 0.85, opacity: 0.8 },
           {
             scale: 1,
+            opacity: 1,
             ease: 'power3.out',
+            stagger: 0.08,
             scrollTrigger: {
               trigger: bottomRowRef.current,
               start: 'top bottom',
@@ -116,7 +120,47 @@ export default function BusinessFundingPage() {
         );
       }
 
-      // 3. How Long Section
+      // 3. Qualify Section (ContentGridOne - Exact Scale & Translate Scrub)
+      if (qualifyRow1Ref.current) {
+        const qualifyRow1Items = qualifyRow1Ref.current.querySelectorAll('.cg-item');
+        gsap.fromTo(
+          qualifyRow1Items,
+          { scale: 0.82 },
+          {
+            scale: 1,
+            ease: 'power3.out',
+            stagger: 0.08,
+            scrollTrigger: {
+              trigger: qualifyRow1Ref.current,
+              start: 'top bottom',
+              end: '+=60%',
+              scrub: 1.2,
+            },
+          }
+        );
+      }
+
+      if (qualifyRow2Ref.current) {
+        const qualifyRow2Cards = qualifyRow2Ref.current.querySelectorAll('.cg-item-content');
+        gsap.fromTo(
+          qualifyRow2Cards,
+          { yPercent: 40, opacity: 0.85 },
+          {
+            yPercent: 0,
+            opacity: 1,
+            ease: 'power3.out',
+            stagger: 0.06,
+            scrollTrigger: {
+              trigger: qualifyRow2Ref.current,
+              start: 'top bottom',
+              end: '+=50%',
+              scrub: 1.2,
+            },
+          }
+        );
+      }
+
+      // 4. How Long Section
       if (howLongRowRef.current) {
         const howLongItems = howLongRowRef.current.querySelectorAll('.cg-item');
         gsap.fromTo(
@@ -233,9 +277,13 @@ export default function BusinessFundingPage() {
               <div className="s-buttons">
                 <Link
                   href="/business-application"
-                  className="btn btn-dark btn-md inline-flex items-center justify-center px-[3.6rem] h-[5.2rem] rounded-[0.4rem] bg-black text-white font-sans text-[1.5rem] font-bold tracking-wide transition-all hover:bg-[#BDF500] hover:text-black cursor-pointer shadow-lg active:scale-95"
+                  className="btn btn-dark btn-md"
                 >
-                  <span className="btn-text">Apply Now</span>
+                  <span className="btn-fill"></span>
+                  <span className="btn-text">
+                    <span className="line line-normal">Apply Now</span>
+                    <span className="line line-hover">Apply Now</span>
+                  </span>
                 </Link>
               </div>
             </div>
@@ -405,23 +453,31 @@ export default function BusinessFundingPage() {
                   <div className="cg-buttons">
                     <Link
                       href="/business-application"
-                      className="btn btn-primary btn-md inline-flex items-center justify-center min-w-[14.8rem] px-[3.6rem] h-[5.2rem] rounded-[0.4rem] bg-[#BDF500] text-black font-sans text-[1.5rem] font-bold tracking-wide transition-all hover:bg-white cursor-pointer shadow-lg active:scale-95"
+                      className="btn btn-primary btn-md"
                     >
-                      <span className="btn-text">Apply Now</span>
+                      <span className="btn-fill"></span>
+                      <span className="btn-text">
+                        <span className="line line-normal">Apply Now</span>
+                        <span className="line line-hover">Apply Now</span>
+                      </span>
                     </Link>
                   </div>
                 </div>
 
                 {/* Media Right Card (Compact stadium photo: width 29rem) */}
                 <div
-                  className="cg-item cg-item-media w-full lg:w-[29rem] flex-shrink-0 lg:-ml-[1px] rounded-[8rem] border border-white overflow-hidden relative shadow-lg will-change-transform min-h-[30rem] lg:min-h-[auto]"
+                  className="cg-item cg-item-media w-full lg:w-[29rem] flex-shrink-0 lg:-ml-[1px] rounded-[3.6rem] border border-white overflow-hidden relative shadow-lg will-change-transform min-h-[30rem] lg:min-h-[auto] bg-transparent"
                   style={{ borderColor: '#ffffff', borderWidth: '1px' }}
                 >
-                  <img
-                    src="/images/funding-goals.jpg"
-                    alt="Ambitious Business Goals"
-                    className="w-full h-full object-cover"
-                  />
+                  <figure className="media-wrapper image-wrapper w-full h-full rounded-[20rem] overflow-hidden">
+                    <span className="media-inner image-inner w-full h-full block">
+                      <img
+                        src="/images/funding-goals.jpg"
+                        alt="Ambitious Business Goals"
+                        className="w-full h-full object-cover"
+                      />
+                    </span>
+                  </figure>
                 </div>
               </div>
 
@@ -496,54 +552,85 @@ export default function BusinessFundingPage() {
         </div>
       </section>
 
-      {/* 5. Qualify Section (Light) */}
-      <section className="section section-pad-top section-pad-bottom section-light section-qualify py-[10rem] lg:py-[14rem] bg-[#ffffff] text-black overflow-hidden border-t border-black/5">
+      {/* 5. Qualify Section (Exact ContentGridOne Light Style & Animation from PayJustNow) */}
+      <section className="section section-pad-top section-pad-bottom section-light section-qualify py-[10rem] lg:py-[14rem] bg-[#f9f9fa] text-black overflow-hidden border-t border-black/5">
         <div className="container-sm max-w-[110.2rem] mx-auto px-[1.6rem]">
-          
-          {/* Top Row: height 34.8rem */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-[4.8rem] items-center mb-[6.4rem]">
-            <div className="lg:col-span-6 h-auto lg:h-[34.8rem] flex flex-col items-start justify-center">
-              <h2 className="font-display font-black text-[4.4rem] sm:text-[5.8rem] lg:text-[6.8rem] uppercase leading-[0.88] text-black tracking-tight mb-[2.4rem]">
-                How Do I Qualify for a Cash Advance?
-              </h2>
-              <Link
-                href="/business-application"
-                className="btn btn-primary btn-md inline-flex items-center justify-center px-[3.6rem] h-[5.2rem] rounded-[0.4rem] bg-black text-[#BDF500] font-sans text-[1.5rem] font-bold tracking-wide transition-all hover:bg-[#BDF500] hover:text-black cursor-pointer shadow-lg active:scale-95"
-              >
-                <span className="btn-text">Apply Now</span>
-              </Link>
-            </div>
-            <div className="lg:col-span-6 w-full h-[28rem] lg:h-[34.8rem] rounded-[4rem] overflow-hidden border border-black/10 shadow-xl">
-              <img
-                src="/images/funding-qualify.jpg"
-                alt="How Do I Qualify"
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </div>
-
-          {/* Bottom 4 Qualification Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[2.4rem]">
-            {qualifications.map((q, idx) => (
+          <div className="s-inner">
+            <div className="content-grid content-grid-light content-grid-one flex flex-col w-full">
+              
+              {/* Row 1: Featured Left Box (Spacious Text & CTA) + Media Right Box (Tablet on Desk Image) */}
               <div
-                key={idx}
-                className="p-[3.2rem] bg-[#f9f9fa] rounded-[2.8rem] border border-black/10 flex flex-col justify-between min-h-[22rem] transition-transform duration-300 hover:-translate-y-1"
+                ref={qualifyRow1Ref}
+                className="cg-row flex flex-col lg:flex-row items-stretch justify-between w-full z-[1]"
               >
-                <div className="w-[4rem] h-[4rem] mb-[2rem]">
-                  <img src={q.icon} alt={q.title} className="w-full h-full object-contain" />
+                {/* Left Featured Card */}
+                <div
+                  className="cg-item cg-item-featured flex-1 p-[4rem_3.6rem] lg:p-[4.8rem_4.4rem] rounded-[3.6rem] border border-black bg-white flex flex-col justify-between mb-[2.4rem] lg:mb-0 shadow-sm will-change-transform min-h-[30rem] lg:min-h-[34rem]"
+                  style={{ backgroundColor: '#ffffff', color: '#000000', borderColor: '#000000' }}
+                >
+                  <div className="max-w-[48rem]">
+                    <h2 className="cg-title font-display font-black text-[4.4rem] sm:text-[5.4rem] lg:text-[5.8rem] uppercase leading-[0.82] text-black tracking-tight mb-[2.8rem]">
+                      How Do I Qualify for a Cash Advance?
+                    </h2>
+                  </div>
+                  <div className="cg-buttons">
+                    <Link
+                      href="/business-application"
+                      className="btn btn-primary btn-md"
+                    >
+                      <span className="btn-fill"></span>
+                      <span className="btn-text">
+                        <span className="line line-normal">Apply Now</span>
+                        <span className="line line-hover">Apply Now</span>
+                      </span>
+                    </Link>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-sans font-bold text-[2rem] text-black mb-[0.6rem] tracking-tight">
-                    {q.title}
-                  </h3>
-                  <p className="font-sans text-[1.45rem] leading-[1.5] text-neutral-600 font-medium">
-                    {q.text}
-                  </p>
+
+                {/* Right Media Card (No outer border) */}
+                <div
+                  className="cg-item cg-item-media flex-1 w-full lg:w-auto lg:-ml-[1px] rounded-[3.6rem] overflow-hidden relative will-change-transform min-h-[28rem] lg:min-h-[34rem] bg-transparent border-0"
+                >
+                  <figure className="media-wrapper image-wrapper w-full h-full rounded-[20rem] overflow-hidden">
+                    <span className="media-inner image-inner w-full h-full block">
+                      <img
+                        src="/images/funding-qualify-exact.jpg"
+                        alt="How Do I Qualify for a Cash Advance"
+                        className="w-full h-full object-cover"
+                      />
+                    </span>
+                  </figure>
                 </div>
               </div>
-            ))}
-          </div>
 
+              {/* Row 2: 4 Connected Qualification Cards with contiguous -1px borders */}
+              <div
+                ref={qualifyRow2Ref}
+                className="cg-row flex flex-col sm:flex-row flex-wrap lg:flex-nowrap lg:-mt-[1px] z-[1]"
+              >
+                {qualifications.map((q, idx) => (
+                  <div
+                    key={idx}
+                    className="cg-item cg-item-content flex-1 p-[3.2rem_2.4rem] bg-white rounded-[3.6rem] border border-black flex flex-col justify-between min-h-[22rem] shadow-sm will-change-transform -mt-[1px] sm:mt-0 sm:-ml-[1px] first:ml-0"
+                    style={{ backgroundColor: '#ffffff', color: '#000000', borderColor: '#000000' }}
+                  >
+                    <div className="cg-icon w-[4rem] h-[4rem] mb-[3.6rem] flex items-center">
+                      <img src={q.icon} alt={q.title} className="w-[3.2rem] h-[3.2rem] object-contain" />
+                    </div>
+                    <div>
+                      <h6 className="cg-title font-serif font-normal text-[2.2rem] text-black mb-[1.2rem] tracking-tight leading-[1.2]">
+                        {q.title}
+                      </h6>
+                      <p className="cg-text font-sans text-[1.35rem] leading-[1.45] text-black/80 font-normal">
+                        {q.text}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+            </div>
+          </div>
         </div>
       </section>
 
@@ -572,23 +659,31 @@ export default function BusinessFundingPage() {
                 <div className="cg-buttons">
                   <Link
                     href="/business-application"
-                    className="btn btn-primary btn-md inline-flex items-center justify-center min-w-[14.8rem] px-[3.6rem] h-[5.2rem] rounded-[0.4rem] bg-[#BDF500] text-black font-sans text-[1.5rem] font-bold tracking-wide transition-all hover:bg-white cursor-pointer shadow-lg active:scale-95"
+                    className="btn btn-primary btn-md"
                   >
-                    <span className="btn-text">Read More</span>
+                    <span className="btn-fill"></span>
+                    <span className="btn-text">
+                      <span className="line line-normal">Read More</span>
+                      <span className="line line-hover">Read More</span>
+                    </span>
                   </Link>
                 </div>
               </div>
 
               {/* Right Media Card (Compact stadium photo: width 29rem) */}
               <div
-                className="cg-item cg-item-media w-full lg:w-[29rem] flex-shrink-0 lg:-ml-[1px] rounded-[8rem] border border-white overflow-hidden relative shadow-lg will-change-transform min-h-[30rem] lg:min-h-[auto]"
+                className="cg-item cg-item-media w-full lg:w-[29rem] flex-shrink-0 lg:-ml-[1px] rounded-[3.6rem] border border-white overflow-hidden relative shadow-lg will-change-transform min-h-[30rem] lg:min-h-[auto] bg-transparent"
                 style={{ borderColor: '#ffffff', borderWidth: '1px' }}
               >
-                <img
-                  src="/images/funding-how-long.jpg"
-                  alt="Funding timeline"
-                  className="w-full h-full object-cover"
-                />
+                <figure className="media-wrapper image-wrapper w-full h-full rounded-[20rem] overflow-hidden">
+                  <span className="media-inner image-inner w-full h-full block">
+                    <img
+                      src="/images/funding-how-long.jpg"
+                      alt="Funding timeline"
+                      className="w-full h-full object-cover"
+                    />
+                  </span>
+                </figure>
               </div>
 
             </div>
