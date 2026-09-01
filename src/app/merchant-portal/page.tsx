@@ -1,30 +1,27 @@
-import Link from 'next/link';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
+import MerchantHeroSection from '@/components/sections/merchant-portal/MerchantHeroSection';
+import MerchantBrandsCarousel from '@/components/sections/merchant-portal/MerchantBrandsCarousel';
+import MerchantAssistantSection from '@/components/sections/merchant-portal/MerchantAssistantSection';
+import MerchantFeaturesSection from '@/components/sections/merchant-portal/MerchantFeaturesSection';
+import MerchantFaqsSection from '@/components/sections/merchant-portal/MerchantFaqsSection';
+import CTASection from '@/components/sections/CTASection';
 
 export const metadata = {
   title: 'Merchant Portal - PayJustNow',
-  description: 'See the latest business updates, marketing opportunities, onboarding information and more.',
+  description: 'Make the most of your access to our business tools. Whether you need marketing tips or technical guidance, our merchant portal is available with chat support whenever you need it.',
 };
 
 export default function MerchantPortalPage() {
   return (
-    <main id="home" className="site">
+    <main id="merchant_portal" className="site" data-barba="container" data-barba-namespace="merchant_portal">
       <Header />
-      <section className="section section-hero" style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <div className="container" style={{ textAlign: 'center', paddingTop: '8rem', paddingBottom: '8rem' }}>
-          <h1 className="s-title" style={{ marginBottom: '3rem' }}>
-            Merchant Portal
-          </h1>
-          <p className="s-text" style={{ marginBottom: '4rem', maxWidth: '50rem', marginLeft: 'auto', marginRight: 'auto' }}>
-            See the latest business updates, marketing opportunities, onboarding information and more.
-          </p>
-          <Link href="/business" className="btn btn-primary btn-md">
-            <span className="btn-fill"></span>
-            <span className="btn-text">Back to Home</span>
-          </Link>
-        </div>
-      </section>
+      <MerchantHeroSection />
+      <MerchantBrandsCarousel />
+      <MerchantAssistantSection />
+      <MerchantFeaturesSection />
+      <MerchantFaqsSection />
+      <CTASection />
       <Footer />
     </main>
   );

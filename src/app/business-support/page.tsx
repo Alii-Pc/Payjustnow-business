@@ -1,30 +1,23 @@
-import Link from 'next/link';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
+import SupportHeroSection from '@/components/sections/support/SupportHeroSection';
+import SupportFaqsSection from '@/components/sections/support/SupportFaqsSection';
+import SupportContactSection from '@/components/sections/support/SupportContactSection';
+import CTASection from '@/components/sections/CTASection';
 
 export const metadata = {
   title: 'Business Support - PayJustNow',
-  description: 'Get help and support for your PayJustNow business integration.',
+  description: 'Chat to us about becoming a PayJustNow Merchant or how you can increase your income using our tools and services. We\'d love to hear from you.',
 };
 
 export default function BusinessSupportPage() {
   return (
-    <main id="home" className="site">
+    <main id="support" className="site" data-barba="container" data-barba-namespace="support">
       <Header />
-      <section className="section section-hero" style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <div className="container" style={{ textAlign: 'center', paddingTop: '8rem', paddingBottom: '8rem' }}>
-          <h1 className="s-title" style={{ marginBottom: '3rem' }}>
-            Business Support
-          </h1>
-          <p className="s-text" style={{ marginBottom: '4rem', maxWidth: '50rem', marginLeft: 'auto', marginRight: 'auto' }}>
-            Get help and support for your PayJustNow business integration. Our support team is ready to assist you.
-          </p>
-          <Link href="/business" className="btn btn-primary btn-md">
-            <span className="btn-fill"></span>
-            <span className="btn-text">Back to Home</span>
-          </Link>
-        </div>
-      </section>
+      <SupportHeroSection />
+      <SupportFaqsSection />
+      <SupportContactSection />
+      <CTASection />
       <Footer />
     </main>
   );

@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
+import PageLoader from '@/components/PageLoader';
+import SmoothScrollProvider from '@/components/SmoothScrollProvider';
 import './globals.css';
 import './styles.css';
 
@@ -68,9 +70,14 @@ export default function RootLayout({
   return (
     <html
       lang="en-US"
-      className={`is-business site-loaded ${abcGravity.variable} ${acidGrotesk.variable} ${mackinac.variable}`}
+      className={`is-business ${abcGravity.variable} ${acidGrotesk.variable} ${mackinac.variable}`}
     >
-      <body className="font-sans">{children}</body>
+      <body className="font-sans">
+        <SmoothScrollProvider>
+          <PageLoader />
+          {children}
+        </SmoothScrollProvider>
+      </body>
     </html>
   );
 }

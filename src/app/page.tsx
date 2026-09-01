@@ -1,4 +1,3 @@
-import PageLoader from '@/components/PageLoader';
 import Header from '@/components/Header/Header';
 import HeroSection from '@/components/sections/HeroSection';
 import BrandCarousel from '@/components/sections/BrandCarousel';
@@ -14,22 +13,19 @@ import Footer from '@/components/Footer/Footer';
 
 export default function Home() {
   return (
-    <>
-      <PageLoader />
-      <main id="home" className="site" data-barba="container" data-barba-namespace="home">
-        <Header />
-        <HeroSection />
-        <BrandCarousel />
-        <SolutionsSection />
-        <StatisticsScroller />
-        <MarketingSection />
-        <ResourcesSection />
-        <BenefitsCarousel />
-        <ChannelsSection />
-        <TestimonialsSection />
-        <CTASection />
-        <Footer />
-      </main>
-    </>
+    <main id="home" className="site" data-barba="container" data-barba-namespace="home">
+      <Header />
+      <HeroSection />
+      <BrandCarousel />
+      <SolutionsSection />
+      <StatisticsScroller />
+      <MarketingSection />
+      <ResourcesSection />
+      <BenefitsCarousel />
+      <ChannelsSection />
+      <TestimonialsSection />
+      <CTASection />
+      <Footer />
+    </main>
   );
 }

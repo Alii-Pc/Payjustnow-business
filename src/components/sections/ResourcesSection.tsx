@@ -1,6 +1,13 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
 import Link from 'next/link';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 interface ResourceItem {
   title: string;
@@ -8,6 +15,8 @@ interface ResourceItem {
   btnText: string;
   href: string;
   imageSrc: string;
+  width: number;
+  height: number;
 }
 
 const resourcesData: ResourceItem[] = [
@@ -16,86 +25,163 @@ const resourcesData: ResourceItem[] = [
     text: 'See the latest business updates, marketing opportunities, onboarding information and more.',
     btnText: 'Read more',
     href: '/merchant-portal',
-    imageSrc: '/images/resource-1.jpg',
+    imageSrc: 'https://payjustnow.com/wp-content/uploads/2025/01/image-1.jpg',
+    width: 1595,
+    height: 1195,
   },
   {
     title: 'Payup app',
     text: 'Want a loadshedding-proof transaction process? Complete offline payments from anywhere using the PayUp App.',
     btnText: 'Learn more',
     href: '/payup',
-    imageSrc: '/images/resource-2.jpg',
+    imageSrc: 'https://payjustnow.com/wp-content/uploads/2025/01/Rectangle-4094-1.jpg',
+    width: 1694,
+    height: 1269,
   },
   {
     title: 'Integrations',
     text: "Add us as a payment method on your website by using our pre-built plugins or custom API's.",
     btnText: 'Learn more',
     href: '/integrations',
-    imageSrc: '/images/resource-3.jpg',
+    imageSrc: 'https://payjustnow.com/wp-content/uploads/2025/01/Rectangle-4071-2-1.jpg',
+    width: 1547,
+    height: 1158,
   },
 ];
 
 export default function ResourcesSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const resourcesRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    const resources = resourcesRef.current;
+    if (!section || !resources) return;
+
+    const ctx = gsap.context(() => {
+      // 1. Header reveal
+      gsap.fromTo(
+        section.querySelector('.s-title') || [],
+        { y: 40, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.9,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 85%',
+          },
+        }
+      );
+
+      // 2. Resource cards staggered entrance
+      const cards = resources.querySelectorAll<HTMLElement>('.resource');
+      if (cards.length > 0) {
+        gsap.fromTo(
+          cards,
+          { y: 60, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.9,
+            stagger: 0.15,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: resources,
+              start: 'top 80%',
+            },
+          }
+        );
+      }
+
+      // 3. Scrubbed image parallax
+      cards.forEach((card) => {
+        const img = card.querySelector<HTMLElement>('.image-inner img');
+        if (img) {
+          gsap.fromTo(
+            img,
+            { yPercent: -5 },
+            {
+              yPercent: 5,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: card,
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: 1.2,
+              },
+            }
+          );
+        }
+      });
+    }, section);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="section section-resources py-[8rem] lg:py-[12rem] bg-black text-white overflow-hidden">
+    <section ref={sectionRef} className="section section-resources">
       <div className="container">
-        <div className="s-inner flex flex-col gap-[4.8rem] lg:gap-[6.4rem]">
-          
-          {/* Header */}
+        <div className="s-inner">
           <div className="s-content">
-            <h2 className="s-title s-title-alt font-display font-black text-[4.8rem] sm:text-[6.4rem] lg:text-[7.6rem] xl:text-[8.3rem] uppercase leading-[0.85] text-white tracking-tight">
+            <h2 className="s-title s-title-alt">
               Get started with these resources
             </h2>
           </div>
-
-          {/* Resources Grid */}
-          <div className="resources grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[2.4rem] lg:gap-[3.2rem]">
+          <div ref={resourcesRef} className="resources">
             {resourcesData.map((item, index) => (
-              <Link
-                key={index}
-                href={item.href}
-                className="resource group relative flex flex-col cursor-pointer"
-              >
-                <div className="resource-inner flex flex-col w-full">
-                  
-                  {/* Top Image Card */}
-                  <div className="resource-image w-full aspect-[4/3] rounded-[3.2rem] lg:rounded-[4rem] overflow-hidden bg-neutral-900 border border-white/10 mb-[1.6rem]">
-                    <div className="w-full h-full overflow-hidden">
-                      <img
-                        width="1595"
-                        height="1195"
-                        className="w-full h-full object-cover transform-gpu transition-transform duration-700 ease-[cubic-bezier(0,0.55,0.45,1)] group-hover:scale-110"
-                        alt={item.title}
-                        src={item.imageSrc}
-                      />
-                    </div>
+              <div key={index} className="resource">
+                <Link
+                  className="resource-link"
+                  href={item.href}
+                  aria-label={item.title}
+                />
+                <div className="resource-inner">
+                  {/* Top Image Box with smooth pill morph & zoom on hover */}
+                  <div className="resource-image">
+                    <figure className="media-wrapper image-wrapper responsive">
+                      <span className="media-inner image-inner">
+                        <img
+                          width={item.width}
+                          height={item.height}
+                          className="media image"
+                          alt={item.title}
+                          src={item.imageSrc}
+                        />
+                      </span>
+                    </figure>
                   </div>
 
-                  {/* Middle Title Pill */}
-                  <div className="resource-title-wrapper relative h-[7.2rem] sm:h-[8rem] lg:h-[9.6rem] px-[2.4rem] rounded-[9.6rem] border border-white bg-black text-white flex items-center justify-center overflow-hidden transition-colors duration-500 group-hover:border-white group-hover:bg-white group-hover:text-black">
-                    <h3 className="resource-title font-display font-black text-[2.8rem] sm:text-[3.2rem] lg:text-[4rem] uppercase tracking-tight text-white transition-colors duration-500 group-hover:text-black whitespace-nowrap">
-                      {item.title}
+                  {/* Middle Title Pill with expanding circle-fill on hover */}
+                  <div className="resource-title-wrapper">
+                    <div className="circle-fill"></div>
+                    <h3 className="resource-title">
+                      <span className="resource-title-text split-line">
+                        {item.title}
+                      </span>
                     </h3>
                   </div>
 
-                  {/* Bottom Content Card */}
-                  <div className="resource-content relative -mt-[1px] p-[2.4rem] lg:p-[3.2rem] rounded-[2.4rem] lg:rounded-[3.2rem] border border-white bg-black text-white flex flex-col justify-between flex-grow min-h-[22rem] transition-colors duration-500 group-hover:border-white group-hover:bg-white group-hover:text-black">
-                    <p className="resource-text font-sans text-[1.4rem] sm:text-[1.5rem] lg:text-[1.6rem] leading-[1.5] text-center text-white/80 transition-colors duration-500 group-hover:text-black font-normal mb-[2.4rem]">
+                  {/* Bottom Content Card with expanding circle-fill and button on hover */}
+                  <div className="resource-content">
+                    <div className="circle-fill"></div>
+                    <p className="resource-text">
                       {item.text}
                     </p>
-
-                    {/* Action Button: Text always crystal-clear white on black background */}
-                    <div className="btn relative w-full h-[4.8rem] lg:h-[5.2rem] rounded-[0.4rem] border border-white text-white bg-transparent flex items-center justify-center font-sans text-[1.4rem] font-medium tracking-wide transition-all duration-500 overflow-hidden group-hover:border-black group-hover:bg-black group-hover:text-white">
-                      <span className="relative z-10 text-white font-medium">
-                        {item.btnText}
-                      </span>
-                    </div>
+                    <Link
+                      href={item.href}
+                      className="btn btn-outline-light btn-md"
+                      target="_self"
+                    >
+                      <span className="btn-fill"></span>
+                      <span className="btn-text">{item.btnText}</span>
+                    </Link>
                   </div>
-
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
-
         </div>
       </div>
     </section>
