@@ -2,13 +2,13 @@ import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import BnplHeroSection from '@/components/sections/bnpl/BnplHeroSection';
 import BnplBrandCarousel from '@/components/sections/bnpl/BnplBrandCarousel';
-import BnplHowSection from '@/components/sections/bnpl/BnplHowSection';
-import BnplOnlineSection from '@/components/sections/bnpl/BnplOnlineSection';
-import BnplInStoreSection from '@/components/sections/bnpl/BnplInStoreSection';
-import BnplSolutionsSection from '@/components/sections/bnpl/BnplSolutionsSection';
 import BnplMerchantsSection from '@/components/sections/bnpl/BnplMerchantsSection';
+import BnplHowSection from '@/components/sections/bnpl/BnplHowSection';
 import BnplIntegrationSection from '@/components/sections/bnpl/BnplIntegrationSection';
 import BnplIntegrationsCarousel from '@/components/sections/bnpl/BnplIntegrationsCarousel';
+import BnplInStoreSection from '@/components/sections/bnpl/BnplInStoreSection';
+import BnplOnlineSection from '@/components/sections/bnpl/BnplOnlineSection';
+import BnplSolutionsSection from '@/components/sections/bnpl/BnplSolutionsSection';
 import CTASection from '@/components/sections/CTASection';
 
 export const metadata = {
@@ -22,13 +22,13 @@ export default function BNPLPage() {
       <Header />
       <BnplHeroSection />
       <BnplBrandCarousel />
-      <BnplHowSection />
-      <BnplOnlineSection />
-      <BnplInStoreSection />
-      <BnplSolutionsSection />
       <BnplMerchantsSection />
+      <BnplHowSection />
       <BnplIntegrationSection />
       <BnplIntegrationsCarousel />
+      <BnplInStoreSection />
+      <BnplOnlineSection />
+      <BnplSolutionsSection />
       <CTASection />
       <Footer />
     </main>

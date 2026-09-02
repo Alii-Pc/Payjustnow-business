@@ -205,7 +205,7 @@ export function Header() {
                         <Link href="/business-support" onClick={closeMobile}><span className="text" data-depth="1">Business Support</span></Link>
                       </li>
                       <li id="menu-item-1374" className="menu-item menu-item-type-custom menu-item-object-custom menu-item-depth-1 menu-item-1374">
-                        <a href="#" onClick={(e) => e.preventDefault()}><span className="text" data-depth="1">Operational Status</span></a>
+                        <Link href="/operational-status" onClick={closeMobile}><span className="text" data-depth="1">Operational Status</span></Link>
                       </li>
                       <li id="menu-item-3188" className="menu-item menu-item-type-custom menu-item-object-custom menu-item-depth-1 menu-item-3188">
                         <Link href="/business-application" onClick={closeMobile}><span className="text" data-depth="1">Request a Demo</span></Link>

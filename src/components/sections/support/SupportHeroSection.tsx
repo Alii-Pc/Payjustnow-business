@@ -144,6 +144,16 @@ export default function SupportHeroSection() {
                     >
                       merchantsupport@payjustnow.com
                     </a>
+                    <div style={{ marginTop: '14px' }}>
+                      <button
+                        type="button"
+                        aria-label="Chat now"
+                        className="btn btn-outline-dark btn-sm btn-chatbot"
+                      >
+                        <span className="btn-fill"></span>
+                        <span className="btn-text">Chat now</span>
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>

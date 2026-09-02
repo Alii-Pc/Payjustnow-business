@@ -50,7 +50,7 @@ export default function ChannelsSection() {
       blocks.forEach((block) => {
         gsap.fromTo(
           block,
-          { scale: 0.9, autoAlpha: 0 },
+          { scale: 0.94, autoAlpha: 0 },
           {
             scale: 1,
             autoAlpha: 1,
@@ -111,97 +111,95 @@ export default function ChannelsSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="section section-channels py-[8rem] lg:py-[12rem] bg-black text-white overflow-hidden">
+    <section ref={sectionRef} className="section section-channels">
       <div className="container">
         <div className="s-inner">
           
           {/* Header row */}
-          <div className="s-content flex flex-col lg:flex-row items-start lg:items-end justify-between gap-[2.4rem] lg:gap-[4.8rem] mb-[4rem] lg:mb-[6.4rem]">
-            <div className="s-title-wrapper w-full lg:max-w-[55%]">
-              <span className="label s-label mb-[1.6rem] inline-flex items-center text-[1.2rem] font-mackinac font-normal px-[1.2rem] h-[2.8rem] rounded-full bg-[#BDF500] text-black">
+          <div className="s-content">
+            <div className="s-title-wrapper">
+              <span className="s-label">
                 Omni-channel Solutions
               </span>
-              <h2 className="s-title font-display font-black text-[4.8rem] sm:text-[6.4rem] lg:text-[7.6rem] xl:text-[8.3rem] leading-[0.82] uppercase text-white tracking-tight">
-                Seamless checkout<br />wherever they shop
+              <h2 className="s-title">
+                Seamless checkout wherever they shop
               </h2>
             </div>
-            <p className="s-text font-sans text-[1.5rem] sm:text-[1.6rem] lg:text-[1.8rem] text-white/85 max-w-[54rem] leading-[1.5] font-normal pb-[0.8rem]">
+            <p className="s-text">
               Offer shoppers the convenience of fast checkouts online and in-store with the PayJustNow app.
             </p>
           </div>
 
-          {/* Grid Layout matching screenshot */}
-          <div ref={channelsRef} className="channels arrow-grid flex flex-col lg:flex-row items-stretch gap-0 w-full">
+          {/* Grid Layout matching live site 1:1 */}
+          <div ref={channelsRef} className="channels arrow-grid">
             
-            {/* Left Column: ECOMMERCE & POS INTEGRATION */}
-            <div className="channels-col channels-left flex flex-col flex-1 w-full lg:w-1/2">
+            {/* Left Column: eCommerce & POS Integration */}
+            <div className="channels-col channels-left">
               
-              {/* Channel 1: ECOMMERCE */}
-              <div className="channel channel-1 flex flex-col justify-center p-[3.2rem] sm:p-[4.4rem] lg:p-[5.6rem] border border-white rounded-[3.6rem] sm:rounded-[4.8rem] lg:rounded-[6.4rem] bg-black text-white min-h-[26rem] lg:min-h-[32rem]">
-                <h3 className="channel-title font-sans text-[2.6rem] sm:text-[3rem] lg:text-[3.4rem] font-medium uppercase text-white tracking-tight mb-[1.6rem] lg:mb-[2rem] leading-[1.1]">
-                  ECOMMERCE
+              {/* Channel 1: eCommerce */}
+              <div className="channel channel-1">
+                <h3 className="channel-title">
+                  eCommerce
                 </h3>
-                <p className="channel-text font-sans text-[1.4rem] sm:text-[1.5rem] lg:text-[1.6rem] text-white/90 leading-[1.55] max-w-[46rem] font-normal">
+                <p className="channel-text">
                   Our prebuilt plugins are compatible with Shopify, Magento, WooCommerce, Salesforce Shopstar, PrestaShop and Storefront. Plus, you can tailor our integration to suit your business needs.
                 </p>
               </div>
 
-              {/* Channel 2: POS INTEGRATION */}
-              <div className="channel channel-2 flex flex-col justify-center p-[3.2rem] sm:p-[4.4rem] lg:p-[5.6rem] border border-white rounded-[3.6rem] sm:rounded-[4.8rem] lg:rounded-[6.4rem] bg-black text-white -mt-[1px] min-h-[26rem] lg:min-h-[32rem]">
-                <h3 className="channel-title font-sans text-[2.6rem] sm:text-[3rem] lg:text-[3.4rem] font-medium uppercase text-white tracking-tight mb-[1.6rem] lg:mb-[2rem] leading-[1.1]">
-                  POS INTEGRATION
+              {/* Channel 2: POS Integration */}
+              <div className="channel channel-2">
+                <h3 className="channel-title">
+                  POS Integration
                 </h3>
-                <p className="channel-text font-sans text-[1.4rem] sm:text-[1.5rem] lg:text-[1.6rem] text-white/90 leading-[1.55] max-w-[46rem] font-normal">
+                <p className="channel-text">
                   Seamless POS integrators through ACS, Cow Hills, BCX, Posworx or Yoyo. We are constantly expanding our list of POS partners to keep your payment process smooth and convenient.
                 </p>
               </div>
 
             </div>
 
-            {/* Right Area */}
-            <div className="channels-right flex flex-1 w-full lg:w-1/2 lg:-ml-[1px] mt-[2.4rem] lg:mt-0 items-stretch">
+            {/* Right Area: Promote Your + Arrows + Soft Touch Integration + Brand */}
+            <div className="channels-right">
               
-              {/* Right-Left: Top Arrow Row & SOFT TOUCH INTEGRATION */}
-              <div className="channels-col channels-right-left flex flex-col flex-1 min-w-0">
+              {/* Right-Left Column */}
+              <div className="channels-col channels-right-left">
                 
                 {/* Top Row: Promote, Your, Arrow Right, Arrow Down */}
-                <div ref={agTopRef} className="channels-right-left-top ag-top flex items-center w-full">
+                <div ref={agTopRef} className="channels-right-left-top ag-top">
                   
-                  {/* Word 1: Promote */}
-                  <div className="word word-1 flex-1 h-[6.4rem] sm:h-[7.6rem] lg:h-[9rem] px-[2rem] sm:px-[3.2rem] lg:px-[4.8rem] rounded-l-[9rem] rounded-r-0 border border-white bg-black text-white flex items-center justify-center font-sans text-[1.8rem] sm:text-[2rem] lg:text-[2.3rem] font-medium">
-                    <span className="word-text whitespace-nowrap text-white">
+                  <div className="word word-1">
+                    <span className="word-text">
                       Promote
                     </span>
                   </div>
 
-                  {/* Word 2: Your */}
-                  <div className="word word-2 flex-1 h-[6.4rem] sm:h-[7.6rem] lg:h-[9rem] px-[2rem] sm:px-[3.2rem] lg:px-[4.8rem] rounded-[9rem] border border-white bg-black text-white flex items-center justify-center font-sans text-[1.8rem] sm:text-[2rem] lg:text-[2.3rem] font-medium -ml-[1px]">
-                    <span className="word-text whitespace-nowrap text-white">
+                  <div className="word word-2">
+                    <span className="word-text">
                       Your
                     </span>
                   </div>
 
-                  {/* Arrow 1: Right */}
-                  <div className="arrow w-[6.4rem] h-[6.4rem] sm:w-[7.6rem] sm:h-[7.6rem] lg:w-[9rem] lg:h-[9rem] rounded-full border border-white bg-black flex-shrink-0 flex items-center justify-center -ml-[1px]">
-                    <ArrowSvg direction="right" className="w-[3rem] h-[3rem] sm:w-[3.4rem] sm:h-[3.4rem] text-white" />
-                  </div>
+                  <span className="arrow">
+                    <span className="arrow-fill"></span>
+                    <ArrowSvg direction="right" className="arrow-svg" />
+                  </span>
 
-                  {/* Arrow 2: Down */}
-                  <div className="arrow w-[6.4rem] h-[6.4rem] sm:w-[7.6rem] sm:h-[7.6rem] lg:w-[9rem] lg:h-[9rem] rounded-full border border-white bg-black flex-shrink-0 flex items-center justify-center -ml-[1px]">
-                    <span className="rotate-90 flex items-center justify-center">
-                      <ArrowSvg direction="right" className="w-[3rem] h-[3rem] sm:w-[3.4rem] sm:h-[3.4rem] text-white" />
+                  <span className="arrow">
+                    <span className="arrow-fill"></span>
+                    <span style={{ transform: 'rotate(90deg)', display: 'inline-flex' }}>
+                      <ArrowSvg direction="right" className="arrow-svg" />
                     </span>
-                  </div>
+                  </span>
 
                 </div>
 
-                {/* Bottom Card: SOFT TOUCH INTEGRATION */}
-                <div className="channels-right-left-bottom flex flex-col flex-grow -mt-[1px]">
-                  <div className="channel channel-3 flex flex-col justify-center flex-grow p-[3.2rem] sm:p-[4.4rem] lg:p-[5.6rem] border border-white rounded-[3.6rem] sm:rounded-[4.8rem] lg:rounded-[6.4rem] bg-black text-white min-h-[30rem] lg:min-h-[55rem]">
-                    <h3 className="channel-title font-sans text-[2.6rem] sm:text-[3rem] lg:text-[3.4rem] font-medium uppercase text-white tracking-tight mb-[1.6rem] lg:mb-[2rem] leading-[1.1]">
-                      SOFT TOUCH INTEGRATION
+                {/* Bottom Card: Soft Touch Integration */}
+                <div className="channels-right-left-bottom">
+                  <div className="channel channel-3">
+                    <h3 className="channel-title">
+                      Soft Touch Integration
                     </h3>
-                    <p className="channel-text font-sans text-[1.4rem] sm:text-[1.5rem] lg:text-[1.6rem] text-white/90 leading-[1.55] max-w-[46rem] font-normal">
+                    <p className="channel-text">
                       Use our PayUp merchant app or static QR codes to get up and running in minutes. Cashless payments speed up the checkout process, reduce queues, and keep shoppers coming back for your service and convenience.
                     </p>
                   </div>
@@ -210,25 +208,24 @@ export default function ChannelsSection() {
               </div>
 
               {/* Right-Right Column: Two Down Arrows & Brand Vertical Pill */}
-              <div ref={agRightRef} className="channels-col channels-right-right ag-right flex flex-col -ml-[1px] w-[6.4rem] sm:w-[7.6rem] lg:w-[9rem] flex-shrink-0 items-center">
+              <div ref={agRightRef} className="channels-col channels-right-right ag-right">
                 
-                {/* Arrow Down 1 */}
-                <div className="arrow w-[6.4rem] h-[6.4rem] sm:w-[7.6rem] sm:h-[7.6rem] lg:w-[9rem] lg:h-[9rem] rounded-full border border-white bg-black flex-shrink-0 flex items-center justify-center">
-                  <span className="rotate-90 flex items-center justify-center">
-                    <ArrowSvg direction="right" className="w-[3rem] h-[3rem] sm:w-[3.4rem] sm:h-[3.4rem] text-white" />
+                <span className="arrow">
+                  <span className="arrow-fill"></span>
+                  <span style={{ transform: 'rotate(90deg)', display: 'inline-flex' }}>
+                    <ArrowSvg direction="right" className="arrow-svg" />
                   </span>
-                </div>
+                </span>
 
-                {/* Arrow Down 2 */}
-                <div className="arrow w-[6.4rem] h-[6.4rem] sm:w-[7.6rem] sm:h-[7.6rem] lg:w-[9rem] lg:h-[9rem] rounded-full border border-white bg-black flex-shrink-0 flex items-center justify-center -mt-[1px]">
-                  <span className="rotate-90 flex items-center justify-center">
-                    <ArrowSvg direction="right" className="w-[3rem] h-[3rem] sm:w-[3.4rem] sm:h-[3.4rem] text-white" />
+                <span className="arrow">
+                  <span className="arrow-fill"></span>
+                  <span style={{ transform: 'rotate(90deg)', display: 'inline-flex' }}>
+                    <ArrowSvg direction="right" className="arrow-svg" />
                   </span>
-                </div>
+                </span>
 
-                {/* Word 3: Brand (Vertical Pill) */}
-                <div className="word word-3 w-[6.4rem] sm:w-[7.6rem] lg:w-[9rem] flex-grow rounded-b-[9rem] rounded-t-0 border border-white bg-black text-white flex items-center justify-center font-sans text-[1.8rem] sm:text-[2rem] lg:text-[2.3rem] font-medium -mt-[1px] py-[3.2rem] lg:py-[5.6rem]">
-                  <span className="word-text rotate-90 whitespace-nowrap text-white">
+                <div className="word word-3">
+                  <span className="word-text">
                     Brand
                   </span>
                 </div>

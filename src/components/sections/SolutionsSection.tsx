@@ -50,7 +50,7 @@ export default function SolutionsSection() {
   return (
     <section
       ref={sectionRef}
-      className="section section-solutions relative py-[8rem] lg:py-[12rem] bg-black text-white overflow-hidden"
+      className="section section-solutions relative pt-[2.4rem] lg:pt-[3.6rem] pb-[8rem] lg:pb-[12rem] bg-black text-white overflow-hidden"
     >
       <div className="container">
         <div className="s-inner flex flex-col gap-[4rem] lg:gap-[6.4rem]">

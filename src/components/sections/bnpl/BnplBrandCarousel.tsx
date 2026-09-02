@@ -39,7 +39,7 @@ export default function BnplBrandCarousel() {
   return (
     <section className="section section-carousel section-brands section-light">
       <div className="carousel carousel-logos carousel-light">
-        <div className="carousel-track">
+        <div className="carousel-track flex animate-[marquee_8s_linear_infinite]">
           {[0, 1, 2].map((setIndex) => (
             <React.Fragment key={setIndex}>
               {brands.map((brand, brandIndex) => (

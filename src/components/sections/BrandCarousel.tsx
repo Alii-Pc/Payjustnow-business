@@ -2,9 +2,9 @@
 
 export default function BrandCarousel() {
   return (
-    <section className="section section-carousel section-brands">
+    <section className="section section-carousel section-brands py-[1.6rem] lg:py-[2.4rem] mb-0 overflow-hidden">
       <div className="carousel carousel-logos">
-        <div className="carousel-track flex animate-[marquee_30s_linear_infinite]">
+        <div className="carousel-track flex animate-[marquee_8s_linear_infinite]">
           {/* First Set */}
           <div className="carousel-item">
             <figure className="media-wrapper image-wrapper"><span className="media-inner image-inner"><img width="97" height="66" src="https://payjustnow.com/wp-content/uploads/2023/11/Vector-2.svg" className="media image" alt="" decoding="async" /></span></figure>

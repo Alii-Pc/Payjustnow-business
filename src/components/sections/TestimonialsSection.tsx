@@ -76,11 +76,13 @@ export default function TestimonialsSection() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  // Desktop shows 2 cards -> maxIndex = 5 - 2 = 3
+  // Mobile shows 1 card -> maxIndex = 5 - 1 = 4
   const maxIndex = isMobile ? testimonialsData.length - 1 : testimonialsData.length - 2;
 
   useEffect(() => {
     if (currentIndex > maxIndex) {
-      setCurrentIndex(maxIndex);
+      setCurrentIndex(Math.max(0, maxIndex));
     }
   }, [maxIndex, currentIndex]);
 
@@ -111,16 +113,16 @@ export default function TestimonialsSection() {
   return (
     <section className="section section-testimonials py-[8rem] lg:py-[12rem] bg-black text-white overflow-hidden">
       <div className="container">
-        <div className="flex flex-col lg:flex-row items-stretch justify-between gap-[3.2rem] lg:gap-[4.8rem]">
+        <div className="flex flex-col lg:flex-row items-stretch justify-between gap-[4rem] lg:gap-[4.8rem] w-full">
           
-          {/* Left Column: Heading (2 lines) & Circular Navigation Arrow Buttons */}
-          <div className="flex flex-row lg:flex-col justify-between items-end lg:items-start flex-shrink-0 w-full lg:w-[36rem] xl:w-[42rem] min-h-[auto] lg:min-h-[60rem]">
+          {/* Left Column: Heading & Navigation Buttons */}
+          <div className="flex flex-row lg:flex-col justify-between items-end lg:items-start flex-shrink-0 w-full lg:w-[36rem] xl:w-[42rem] min-h-[auto] lg:min-h-[58rem]">
             <h2 className="font-display font-black text-[4.8rem] sm:text-[6.4rem] lg:text-[7.2rem] xl:text-[8rem] leading-[0.85] uppercase text-white tracking-tight max-w-[48rem]">
               WHY BUSINESSES LOVE<br />PAYJUSTNOW
             </h2>
 
-            {/* Circular Navigation Buttons matching screenshot */}
-            <div className="flex items-center gap-[1.8rem] lg:gap-[2.4rem] mt-auto pt-[2.4rem] lg:pt-[4rem]">
+            {/* Circular Arrow Navigation Buttons */}
+            <div className="flex items-center gap-[1.8rem] lg:gap-[2.4rem] pt-[3.2rem] lg:pt-0 mt-auto">
               <button
                 type="button"
                 aria-label="Previous Testimonial"
@@ -151,9 +153,9 @@ export default function TestimonialsSection() {
             </div>
           </div>
 
-          {/* Right Column: 2-Card Slider Track */}
+          {/* Right Column: Full-Width 2-Card Slider Window */}
           <div
-            className="flex-1 overflow-hidden relative w-full"
+            className="flex-1 min-w-0 overflow-hidden relative w-full"
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
           >
@@ -169,10 +171,10 @@ export default function TestimonialsSection() {
               {testimonialsData.map((item, index) => (
                 <div
                   key={index}
-                  className="w-full lg:w-[calc(50%-1.2rem)] flex-shrink-0 bg-[#eff1f1] text-black border border-black/10 rounded-[4.4rem] lg:rounded-[5.6rem] p-[3.2rem] sm:p-[4rem] lg:p-[4.8rem] flex flex-col justify-start items-start relative select-none min-h-[52rem] lg:min-h-[60rem]"
+                  className="w-full lg:w-[calc(50%-1.2rem)] flex-shrink-0 bg-[#eff1f1] text-black border border-black/10 rounded-[3.6rem] lg:rounded-[4.8rem] p-[3.2rem] sm:p-[4rem] lg:p-[4.8rem] flex flex-col justify-start items-start select-none min-h-[50rem] lg:min-h-[58rem]"
                 >
-                  {/* Brand Circular Logo Badge */}
-                  <div className="w-[8.8rem] h-[8.8rem] lg:w-[10.4rem] lg:h-[10.4rem] rounded-full bg-white flex items-center justify-center p-[1.6rem] mb-[2.8rem] lg:mb-[3.6rem] shadow-none flex-shrink-0">
+                  {/* Brand Circular Logo Avatar Badge */}
+                  <div className="w-[8.8rem] h-[8.8rem] lg:w-[10.4rem] lg:h-[10.4rem] rounded-full bg-white flex items-center justify-center p-[1.6rem] mb-[2.8rem] lg:mb-[3.6rem] flex-shrink-0 shadow-sm">
                     <img
                       width={item.width}
                       height={item.height}
@@ -184,16 +186,16 @@ export default function TestimonialsSection() {
                   </div>
 
                   {/* Role */}
-                  <span className="font-sans text-[1.5rem] lg:text-[1.8rem] font-medium text-black/85 mb-[0.8rem] leading-[1.2]">
+                  <span className="font-sans text-[1.4rem] lg:text-[1.6rem] font-medium text-black/85 mb-[0.6rem] leading-[1.2]">
                     {item.role}
                   </span>
 
-                  {/* Name (Title Case matching screenshot) */}
-                  <h4 className="font-sans text-[2.6rem] lg:text-[3rem] font-medium normal-case text-black tracking-tight mb-[2rem] lg:mb-[2.4rem] leading-[1.1]">
+                  {/* Name */}
+                  <h4 className="font-sans text-[2.4rem] lg:text-[2.8rem] font-bold text-black tracking-tight mb-[1.8rem] lg:mb-[2.4rem] leading-[1.1]">
                     {item.name}
                   </h4>
 
-                  {/* Quote Paragraph */}
+                  {/* Quote */}
                   <div className="font-sans text-[1.4rem] sm:text-[1.5rem] lg:text-[1.6rem] font-normal leading-[1.55] text-black/90 space-y-[1.2rem]">
                     {Array.isArray(item.quote) ? (
                       item.quote.map((p, pIdx) => <p key={pIdx}>{p}</p>)

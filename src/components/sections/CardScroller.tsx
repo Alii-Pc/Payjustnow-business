@@ -178,7 +178,9 @@ export default function CardScroller({
                       src={card.image}
                       alt={card.title}
                       className={`max-h-full max-w-full ${
-                        card.isCoverImage && !card.maskImage ? 'w-full h-full object-cover rounded-[2.4rem]' : 'w-full h-full object-cover'
+                        card.isCoverImage && !card.maskImage
+                          ? 'w-full h-full object-cover rounded-[2.4rem]'
+                          : 'w-auto h-auto max-h-[36rem] max-w-[38rem] object-contain'
                       }`}
                     />
                   </div>
@@ -234,7 +236,11 @@ export default function CardScroller({
                 <img
                   src={card.image}
                   alt={card.title}
-                  className="w-full h-full object-cover"
+                  className={`max-h-full max-w-full ${
+                    card.isCoverImage && !card.maskImage
+                      ? 'w-full h-full object-cover'
+                      : 'w-auto h-auto max-h-[22rem] max-w-[90%] object-contain'
+                  }`}
                 />
               </div>
 

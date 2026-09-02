@@ -426,10 +426,15 @@ html {
   width: 100%;
 }
 
-.carousel-logos .carousel-track,
+.carousel-logos .carousel-track {
+  display: flex;
+  animation: marquee 8s linear infinite !important;
+  will-change: transform;
+}
+
 .carousel-benefits .carousel-track {
   display: flex;
-  animation: marquee 30s linear infinite;
+  animation: marquee 8s linear infinite !important;
   will-change: transform;
 }
 

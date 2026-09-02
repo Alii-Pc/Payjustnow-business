@@ -39,7 +39,7 @@ export default function MarketingBrandsCarousel() {
   return (
     <section className="section section-carousel section-brands">
       <div className="carousel carousel-logos">
-        <div className="carousel-track">
+        <div className="carousel-track flex animate-[marquee_8s_linear_infinite]">
           {[0, 1, 2].map((setIndex) => (
             <React.Fragment key={setIndex}>
               {brands.map((brand, brandIndex) => (

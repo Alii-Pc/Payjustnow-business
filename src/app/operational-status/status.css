@@ -1,0 +1,597 @@
+/* ============================================================
+   AUTHENTIC ATLASSIAN STATUSPAGE CSS - LARGE UPTIME & 1:1 REPLICATION
+   ============================================================ */
+
+.status-page-root {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333333;
+  background-color: #ffffff;
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+.status-page-root * {
+  box-sizing: border-box;
+}
+
+.status-page-container {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+/* ----------------- MASTHEAD ----------------- */
+.status-masthead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.status-masthead h1 {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  font-size: 32px !important;
+  font-weight: 400 !important;
+  color: #222222 !important;
+  margin: 0 !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.5px !important;
+}
+
+.status-masthead a.brand-link {
+  color: #222222;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.status-masthead a.brand-link:hover {
+  opacity: 0.8;
+}
+
+/* Subscribe Button - Solid Blue with uppercase text */
+.status-subscribe-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: #ffffff;
+  background-color: #2386c8;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.status-subscribe-btn:hover {
+  background-color: #1a74b0;
+}
+
+/* ----------------- STATUS BANNER ----------------- */
+.status-banner {
+  background-color: #2fcc66;
+  color: #ffffff;
+  padding: 16px 22px;
+  border-radius: 4px;
+  margin-bottom: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.status-banner h2 {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  margin: 0 !important;
+  color: #ffffff !important;
+  line-height: 1.2 !important;
+}
+
+.status-banner .last-updated {
+  font-size: 12px;
+  opacity: 0.95;
+  font-weight: 400;
+}
+
+/* ----------------- TABS NAVIGATION (INCIDENTS / UPTIME) ----------------- */
+.history-nav-tabs-container {
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 28px;
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.history-nav-tab-btn {
+  padding: 10px 22px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #777777;
+  background: transparent;
+  border: 1px solid transparent;
+  border-bottom: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border-radius: 4px 4px 0 0;
+  margin-bottom: -1px;
+}
+
+.history-nav-tab-btn:hover {
+  color: #333333;
+}
+
+.history-nav-tab-btn.active {
+  color: #333333;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-bottom: 1px solid #ffffff;
+  font-weight: 600;
+}
+
+/* ----------------- CONTROLS BAR (PAGER & SELECTOR) ----------------- */
+.history-controls-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 35px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.status-select-wrapper {
+  position: relative;
+  min-width: 280px;
+}
+
+.status-component-select {
+  width: 100%;
+  padding: 10px 36px 10px 14px;
+  font-size: 14px;
+  color: #333333;
+  background-color: #f4f5f7;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.status-component-select:hover {
+  background-color: #ebecf0;
+}
+
+.status-select-arrow {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: 10px;
+  color: #666666;
+}
+
+.history-date-pager {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: #444444;
+}
+
+.pager-btn {
+  width: 34px;
+  height: 34px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666666;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.15s ease;
+}
+
+.pager-btn:hover:not(:disabled) {
+  background: #f4f5f7;
+  color: #222222;
+  border-color: #ccc;
+}
+
+.pager-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ----------------- 3-MONTH CALENDAR GRID (LARGE TILES) ----------------- */
+.uptime-3months-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 36px;
+  margin-top: 10px;
+  margin-bottom: 50px;
+}
+
+@media (max-width: 800px) {
+  .uptime-3months-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+}
+
+.uptime-month-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.uptime-month-col-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  font-size: 15px;
+  color: #333333;
+}
+
+.uptime-month-col-title {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.uptime-month-col-stat {
+  font-size: 14px;
+  color: #777777;
+  font-weight: 500;
+}
+
+.uptime-month-blocks-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.uptime-block {
+  aspect-ratio: 1;
+  min-height: 28px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: opacity 0.15s ease, transform 0.1s ease;
+}
+
+.uptime-block.available {
+  background-color: #2ecc71;
+}
+
+.uptime-block.available:hover {
+  opacity: 0.85;
+  transform: scale(1.06);
+}
+
+.uptime-block.future {
+  background-color: #ebebeb;
+}
+
+.uptime-block.empty {
+  background-color: transparent;
+  cursor: default;
+}
+
+/* ----------------- COMPONENTS TABLE (LARGE TIMELINE BARS) ----------------- */
+.components-section-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.components-section-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #333333;
+}
+
+.components-section-sub {
+  font-size: 13px;
+  color: #777777;
+}
+
+.components-section-sub button {
+  color: #2386c8;
+  text-decoration: none;
+  font-weight: 500;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.components-section-sub button:hover {
+  text-decoration: underline;
+}
+
+.status-components-table {
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  background: #ffffff;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.status-table-row {
+  padding: 18px 22px;
+  border-bottom: 1px solid #e0e0e0;
+  transition: background-color 0.15s ease;
+}
+
+.status-table-row:last-child {
+  border-bottom: none;
+}
+
+.status-table-row:hover {
+  background-color: #fafbfc;
+}
+
+.status-row-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.status-service-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333333;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-info-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 1px solid #b0b0b0;
+  color: #777777;
+  font-size: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  background: transparent;
+  padding: 0;
+  line-height: 1;
+}
+
+.status-info-circle:hover {
+  color: #222222;
+  border-color: #666666;
+}
+
+.status-operational-text {
+  font-size: 13px;
+  font-weight: 500;
+  color: #2ecc71;
+}
+
+/* Timeline SVG & Axis */
+.uptime-timeline-container {
+  width: 100%;
+}
+
+.uptime-svg {
+  width: 100%;
+  height: 38px;
+  display: block;
+}
+
+.uptime-bar {
+  fill: #2ecc71;
+  transition: opacity 0.15s ease;
+  cursor: pointer;
+}
+
+.uptime-bar:hover {
+  opacity: 0.75;
+}
+
+.uptime-axis-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #888888;
+  margin-top: 8px;
+}
+
+.uptime-axis-line {
+  flex: 1;
+  height: 1px;
+  background-color: #e0e0e0;
+  margin: 0 12px;
+}
+
+.uptime-axis-middle-text {
+  color: #555555;
+  font-weight: 500;
+  font-size: 11px;
+}
+
+/* Platform Groups */
+.status-group-row-header {
+  padding: 18px 22px;
+  border-bottom: 1px solid #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  user-select: none;
+  background: #ffffff;
+  transition: background-color 0.15s ease;
+}
+
+.status-group-row-header:hover {
+  background-color: #fafbfc;
+}
+
+.status-group-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333333;
+}
+
+.status-toggle-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  border: 1px solid #a0a0a0;
+  border-radius: 2px;
+  color: #555555;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.status-group-children-wrap {
+  background-color: #fcfcfc;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.status-group-child-row {
+  padding: 16px 22px 16px 48px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.status-group-child-row:last-child {
+  border-bottom: none;
+}
+
+/* ----------------- LEGEND ----------------- */
+.status-legend-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 18px;
+  font-size: 12px;
+  color: #666666;
+  margin-top: 15px;
+  margin-bottom: 50px;
+}
+
+.legend-dot-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+/* ----------------- PAST INCIDENTS ----------------- */
+.past-incidents-section {
+  margin-top: 50px;
+  margin-bottom: 60px;
+}
+
+.past-incidents-main-title {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  font-size: 24px !important;
+  font-weight: 500 !important;
+  color: #222222 !important;
+  margin: 0 0 20px 0 !important;
+}
+
+.past-incident-day-item {
+  padding: 18px 0;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.past-incident-date-heading {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333333;
+  margin-bottom: 6px;
+}
+
+.past-incident-desc-text {
+  font-size: 13px;
+  color: #888888;
+  margin: 0;
+}
+
+/* ----------------- HISTORICAL INCIDENTS VIEW ----------------- */
+.historical-incident-month-block {
+  margin-bottom: 30px;
+}
+
+.historical-month-title {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  font-size: 22px !important;
+  font-weight: 400 !important;
+  color: #222222 !important;
+  margin: 0 0 10px 0 !important;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.historical-month-desc {
+  font-size: 13px;
+  color: #888888;
+  margin: 0;
+  padding: 6px 0 12px;
+}
+
+/* ----------------- FOOTER ----------------- */
+.status-page-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 25px;
+  border-top: 1px solid #e0e0e0;
+  font-size: 13px;
+  color: #888888;
+}
+
+.footer-nav-link {
+  color: #2386c8;
+  text-decoration: none;
+  font-weight: 500;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.footer-nav-link:hover {
+  text-decoration: underline;
+}
+
+.powered-by-text {
+  color: #888888;
+}

@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import PageLoader from '@/components/PageLoader';
 import SmoothScrollProvider from '@/components/SmoothScrollProvider';
+import { ChatProvider } from '@/context/ChatContext';
+import ChatModal from '@/components/chat/ChatModal';
 import './globals.css';
 import './styles.css';
 
@@ -74,8 +76,11 @@ export default function RootLayout({
     >
       <body className="font-sans">
         <SmoothScrollProvider>
-          <PageLoader />
-          {children}
+          <ChatProvider>
+            <PageLoader />
+            {children}
+            <ChatModal />
+          </ChatProvider>
         </SmoothScrollProvider>
       </body>
     </html>

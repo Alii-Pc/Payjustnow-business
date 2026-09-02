@@ -600,6 +600,79 @@ html, body {
   }
 }
 
+/* ==========================================================================
+   Footer Typography Enhancements (Live Site Match)
+   ========================================================================== */
+.footer {
+  font-family: var(--font-acid-grotesk), sans-serif;
+}
+
+.footer .footer-top .footer-nav .footer-nav-heading .footer-nav-title {
+  font-family: var(--font-acid-grotesk), sans-serif !important;
+  font-size: 1.8rem !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  letter-spacing: -0.02rem !important;
+  line-height: 1.2 !important;
+}
+
+.footer .footer-top .footer-nav .menu .menu-item a {
+  font-family: var(--font-acid-grotesk), sans-serif !important;
+  font-size: 1.5rem !important;
+  font-weight: 400 !important;
+  color: rgba(255, 255, 255, 0.85) !important;
+  line-height: 1.6 !important;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.footer .footer-top .footer-nav .menu .menu-item a:hover {
+  color: #ffffff !important;
+  opacity: 1 !important;
+}
+
+.footer .footer-top .footer-contact .footer-contact-heading .footer-contact-title {
+  font-family: var(--font-acid-grotesk), sans-serif !important;
+  font-size: 1.8rem !important;
+  font-weight: 700 !important;
+  color: #BDF500 !important;
+  letter-spacing: -0.02rem !important;
+  line-height: 1.2 !important;
+}
+
+.footer .footer-top .footer-contact .contact-items .contact-item .contact-title {
+  font-family: var(--font-acid-grotesk), sans-serif !important;
+  font-size: 1.3rem !important;
+  font-weight: 500 !important;
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.footer .footer-top .footer-contact .contact-items .contact-item .contact-link {
+  font-family: var(--font-acid-grotesk), sans-serif !important;
+  font-size: 1.5rem !important;
+  font-weight: 500 !important;
+  color: #ffffff !important;
+}
+
+.footer .footer-copyright .copyright {
+  font-family: var(--font-acid-grotesk), sans-serif !important;
+  font-size: 1.3rem !important;
+  color: rgba(255, 255, 255, 0.6) !important;
+  font-weight: 400 !important;
+}
+
+.footer .footer-copyright .legal-nav .menu .menu-item a {
+  font-family: var(--font-acid-grotesk), sans-serif !important;
+  font-size: 1.3rem !important;
+  color: rgba(255, 255, 255, 0.6) !important;
+  font-weight: 400 !important;
+  transition: color 0.2s ease;
+}
+
+.footer .footer-copyright .legal-nav .menu .menu-item a:hover {
+  color: #ffffff !important;
+}
+
+
 
 
 

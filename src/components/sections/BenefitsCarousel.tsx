@@ -13,7 +13,7 @@ export default function BenefitsCarousel() {
         </div>
       </div>
       <div className="carousel carousel-benefits">
-        <div className="carousel-track flex animate-[marquee_25s_linear_infinite]">
+        <div className="carousel-track flex animate-[marquee_10s_linear_infinite]">
           {/* Set 1 */}
           <div className="carousel-item">
             <figure className="media-wrapper image-wrapper"><span className="media-inner image-inner"><img width="24" height="24" className="media image" alt="" decoding="async" src="https://payjustnow.com/wp-content/uploads/2025/01/24px.svg" /></span></figure>
