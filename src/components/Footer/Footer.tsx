@@ -94,8 +94,8 @@ export default function Footer() {
                 </li>
                 <li id="menu-item-1375" className="status menu-item menu-item-type-custom menu-item-object-custom menu-item-depth-0 menu-item-1375">
                   <Link href="/operational-status">
-                    <span className="status-label label major">Operational</span>
                     <span className="text" data-depth="0">Operational Status</span>
+                    <span className="status-label label major">Operational</span>
                   </Link>
                 </li>
                 <li id="menu-item-2785" className="menu-item menu-item-type-custom menu-item-object-custom menu-item-depth-0 menu-item-2785">

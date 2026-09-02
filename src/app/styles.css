@@ -601,76 +601,282 @@ html, body {
 }
 
 /* ==========================================================================
-   Footer Typography Enhancements (Live Site Match)
+   Footer Typography & Color System (Dark & Light Page Support)
    ========================================================================== */
 .footer {
   font-family: var(--font-acid-grotesk), sans-serif;
 }
 
+/* Dark Footer (Default) */
 .footer .footer-top .footer-nav .footer-nav-heading .footer-nav-title {
-  font-family: var(--font-acid-grotesk), sans-serif !important;
-  font-size: 1.8rem !important;
-  font-weight: 700 !important;
-  color: #ffffff !important;
-  letter-spacing: -0.02rem !important;
-  line-height: 1.2 !important;
+  font-family: var(--font-acid-grotesk), sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.02rem;
+  line-height: 1.2;
 }
 
 .footer .footer-top .footer-nav .menu .menu-item a {
-  font-family: var(--font-acid-grotesk), sans-serif !important;
-  font-size: 1.5rem !important;
-  font-weight: 400 !important;
-  color: rgba(255, 255, 255, 0.85) !important;
-  line-height: 1.6 !important;
+  font-family: var(--font-acid-grotesk), sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
   transition: color 0.2s ease, opacity 0.2s ease;
 }
 
 .footer .footer-top .footer-nav .menu .menu-item a:hover {
-  color: #ffffff !important;
-  opacity: 1 !important;
+  color: #ffffff;
+  opacity: 1;
 }
 
 .footer .footer-top .footer-contact .footer-contact-heading .footer-contact-title {
-  font-family: var(--font-acid-grotesk), sans-serif !important;
-  font-size: 1.8rem !important;
-  font-weight: 700 !important;
-  color: #BDF500 !important;
-  letter-spacing: -0.02rem !important;
-  line-height: 1.2 !important;
+  font-family: var(--font-acid-grotesk), sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #BDF500;
+  letter-spacing: -0.02rem;
+  line-height: 1.2;
 }
 
 .footer .footer-top .footer-contact .contact-items .contact-item .contact-title {
-  font-family: var(--font-acid-grotesk), sans-serif !important;
-  font-size: 1.3rem !important;
-  font-weight: 500 !important;
-  color: rgba(255, 255, 255, 0.7) !important;
+  font-family: var(--font-acid-grotesk), sans-serif;
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .footer .footer-top .footer-contact .contact-items .contact-item .contact-link {
-  font-family: var(--font-acid-grotesk), sans-serif !important;
-  font-size: 1.5rem !important;
-  font-weight: 500 !important;
-  color: #ffffff !important;
+  font-family: var(--font-acid-grotesk), sans-serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #ffffff;
 }
 
 .footer .footer-copyright .copyright {
-  font-family: var(--font-acid-grotesk), sans-serif !important;
-  font-size: 1.3rem !important;
-  color: rgba(255, 255, 255, 0.6) !important;
-  font-weight: 400 !important;
+  font-family: var(--font-acid-grotesk), sans-serif;
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 400;
 }
 
 .footer .footer-copyright .legal-nav .menu .menu-item a {
-  font-family: var(--font-acid-grotesk), sans-serif !important;
-  font-size: 1.3rem !important;
-  color: rgba(255, 255, 255, 0.6) !important;
-  font-weight: 400 !important;
+  font-family: var(--font-acid-grotesk), sans-serif;
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 400;
   transition: color 0.2s ease;
 }
 
 .footer .footer-copyright .legal-nav .menu .menu-item a:hover {
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   Footer Container & Card System (Single outer card, NO boxes around columns)
+   ========================================================================== */
+.footer .footer-top .footer-top-left {
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 4.8rem !important;
+  background: #181818 !important;
+  padding: 4.8rem !important;
+}
+
+.footer .footer-top .footer-top-left .footer-nav {
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Light Footer Overrides (#payup .footer, .footer-light, .is-shopper .footer) */
+#payup .footer,
+.footer.footer-light,
+.is-shopper .footer {
+  background: #fafbfb !important;
+  color: #000000 !important;
+}
+
+#payup .footer .footer-top .footer-top-left,
+.footer.footer-light .footer-top .footer-top-left,
+.is-shopper .footer .footer-top .footer-top-left {
+  border: 1px solid #000000 !important;
+  border-radius: 4.8rem !important;
+  background: #ffffff !important;
+  padding: 4.8rem !important;
+}
+
+#payup .footer .footer-top .footer-top-left .footer-nav,
+.footer.footer-light .footer-top .footer-top-left .footer-nav,
+.is-shopper .footer .footer-top .footer-top-left .footer-nav {
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+}
+
+#payup .footer .footer-top .footer-contact,
+.footer.footer-light .footer-top .footer-contact,
+.is-shopper .footer .footer-top .footer-contact {
+  background: #ffffff !important;
+  border: 1px solid #000000 !important;
+  border-radius: 4.8rem !important;
+}
+
+#payup .footer .footer-top .footer-weaver,
+.footer.footer-light .footer-top .footer-weaver,
+.is-shopper .footer .footer-top .footer-weaver {
+  background: #ffffff !important;
+  border: 1px solid #000000 !important;
+  border-radius: 4.8rem !important;
+}
+
+#payup .footer .footer-top .footer-nav .footer-nav-heading .footer-nav-title,
+.footer.footer-light .footer-top .footer-nav .footer-nav-heading .footer-nav-title,
+.is-shopper .footer .footer-top .footer-nav .footer-nav-heading .footer-nav-title {
+  color: #000000 !important;
+}
+
+#payup .footer .footer-top .footer-nav .menu .menu-item a,
+.footer.footer-light .footer-top .footer-nav .menu .menu-item a,
+.is-shopper .footer .footer-top .footer-nav .menu .menu-item a {
+  color: #000000 !important;
+  opacity: 0.85;
+}
+
+#payup .footer .footer-top .footer-nav .menu .menu-item a:hover,
+.footer.footer-light .footer-top .footer-nav .menu .menu-item a:hover,
+.is-shopper .footer .footer-top .footer-nav .menu .menu-item a:hover {
+  color: #000000 !important;
+  opacity: 1;
+}
+
+#payup .footer .footer-top .footer-contact .footer-contact-heading .footer-contact-title,
+.footer.footer-light .footer-top .footer-contact .footer-contact-heading .footer-contact-title,
+.is-shopper .footer .footer-top .footer-contact .footer-contact-heading .footer-contact-title {
+  color: #000000 !important;
+}
+
+#payup .footer .footer-top .footer-contact .contact-items .btn-chatbot,
+.footer.footer-light .footer-top .footer-contact .contact-items .btn-chatbot,
+.is-shopper .footer .footer-top .footer-contact .contact-items .btn-chatbot {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border: 1px solid #000000 !important;
+}
+
+#payup .footer .footer-top .footer-contact .contact-items .btn-chatbot:hover,
+.footer.footer-light .footer-top .footer-contact .contact-items .btn-chatbot:hover,
+.is-shopper .footer .footer-top .footer-contact .contact-items .btn-chatbot:hover {
+  background: #BDF500 !important;
+  color: #000000 !important;
+}
+
+#payup .footer .footer-top .footer-contact .contact-items .contact-item .contact-title,
+.footer.footer-light .footer-top .footer-contact .contact-items .contact-item .contact-title,
+.is-shopper .footer .footer-top .footer-contact .contact-items .contact-item .contact-title {
+  color: rgba(0, 0, 0, 0.6) !important;
+}
+
+#payup .footer .footer-top .footer-contact .contact-items .contact-item .contact-link,
+.footer.footer-light .footer-top .footer-contact .contact-items .contact-item .contact-link,
+.is-shopper .footer .footer-top .footer-contact .contact-items .contact-item .contact-link {
+  color: #000000 !important;
+}
+
+#payup .footer .footer-top .footer-weaver svg path[fill="white"],
+.footer.footer-light .footer-top .footer-weaver svg path[fill="white"],
+.is-shopper .footer .footer-top .footer-weaver svg path[fill="white"] {
+  fill: #000000 !important;
+}
+
+#payup .footer .footer-bottom .footer-logo svg path,
+.footer.footer-light .footer-bottom .footer-logo svg path,
+.is-shopper .footer .footer-bottom .footer-logo svg path {
+  fill: #000000 !important;
+}
+
+#payup .footer .footer-bottom .footer-social-buttons .social-btn,
+.footer.footer-light .footer-bottom .footer-social-buttons .social-btn,
+.is-shopper .footer .footer-bottom .footer-social-buttons .social-btn {
+  color: #000000 !important;
+  border: 1px solid #000000 !important;
+  background: transparent !important;
+}
+
+#payup .footer .footer-bottom .footer-social-buttons .social-btn .icon path,
+.footer.footer-light .footer-bottom .footer-social-buttons .social-btn .icon path,
+.is-shopper .footer .footer-bottom .footer-social-buttons .social-btn .icon path {
+  fill: #000000 !important;
+}
+
+#payup .footer .footer-bottom .footer-social-buttons .social-btn:hover,
+.footer.footer-light .footer-bottom .footer-social-buttons .social-btn:hover,
+.is-shopper .footer .footer-bottom .footer-social-buttons .social-btn:hover {
+  background: #000000 !important;
   color: #ffffff !important;
 }
+
+#payup .footer .footer-bottom .footer-social-buttons .social-btn:hover .icon path,
+.footer.footer-light .footer-bottom .footer-social-buttons .social-btn:hover .icon path,
+.is-shopper .footer .footer-bottom .footer-social-buttons .social-btn:hover .icon path {
+  fill: #ffffff !important;
+}
+
+#payup .footer .footer-copyright .copyright,
+.footer.footer-light .footer-copyright .copyright,
+.is-shopper .footer .footer-copyright .copyright {
+  color: rgba(0, 0, 0, 0.6) !important;
+}
+
+#payup .footer .footer-copyright .legal-nav .menu .menu-item a,
+.footer.footer-light .footer-copyright .legal-nav .menu .menu-item a,
+.is-shopper .footer .footer-copyright .legal-nav .menu .menu-item a {
+  color: rgba(0, 0, 0, 0.6) !important;
+}
+
+#payup .footer .footer-copyright .legal-nav .menu .menu-item a:hover,
+.footer.footer-light .footer-copyright .legal-nav .menu .menu-item a:hover,
+.is-shopper .footer .footer-copyright .legal-nav .menu .menu-item a:hover {
+  color: #000000 !important;
+}
+
+/* ==========================================================================
+   Operational Status Badge Containment
+   ========================================================================== */
+.footer .footer-top .footer-nav .menu .menu-item.status a {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.8rem !important;
+  position: static !important;
+  width: auto !important;
+  max-width: 100% !important;
+}
+
+.footer .footer-top .footer-nav .menu .menu-item.status a .status-label {
+  position: static !important;
+  transform: none !important;
+  left: auto !important;
+  top: auto !important;
+  margin-left: 0.8rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 2.2rem !important;
+  padding: 0 0.8rem !important;
+  border-radius: 9999px !important;
+  font-size: 1.1rem !important;
+  font-weight: 500 !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+}
+
+
 
 
 
